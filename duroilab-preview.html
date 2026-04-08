@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Home - DuRoi Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════
+   GLOBAL CSS — DuRoi Lab
+   Single source of all shared styles.
+═══════════════════════════════════════ */
+
+/* ─── 1. CSS VARIABLES ─── */
+:root {
+  --clr-green-dark:   #1a3a22;
+  --clr-green-mid:    #2b8c3e;
+  --clr-green-light:  #edf7ef;
+  --clr-red:          #e6263b;
+  --clr-red-check:    #c0392b;
+  --clr-white:        #ffffff;
+  --clr-text:         #333333;
+  --clr-text-mid:     #444444;
+  --clr-text-light:   #555555;
+  --clr-border:       #e8e8e8;
+  --clr-border-light: #f0f0f0;
+  --font-body:        'Lato', sans-serif;
+  --font-cursive:     'Dancing Script', cursive;
+  --font-display:     'Arial Black', 'Helvetica Neue', sans-serif;
+  --fs-xs:11px; --fs-sm:13px; --fs-base:15px; --fs-md:17px;
+  --fs-xl:30px; --fs-2xl:40px; --fs-3xl:52px;
+  --sp-1:4px;  --sp-2:8px;   --sp-3:12px;  --sp-4:16px;
+  --sp-5:20px; --sp-6:24px;  --sp-8:32px;  --sp-10:40px;
+  --sp-12:48px;--sp-16:64px; --sp-20:80px;
+  --radius-sm:4px; --radius-md:8px; --radius-lg:14px;
+  --radius-xl:20px; --radius-pill:100px;
+  --shadow-sm:  0 2px 8px rgba(0,0,0,.07);
+  --shadow-lg:  0 8px 40px rgba(0,0,0,.14);
+  --shadow-hero:0 4px 32px rgba(0,0,0,.12);
+  --tr-fast:.15s ease; --tr-base:.22s ease; --tr-slow:.35s ease;
+  --max-w:1100px; --section-py:80px;
+}
+
+/* ─── 2. RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--clr-text);background:#fff;
+     -webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+ul,ol{list-style:none}
+
+/* ─── 3. KEYFRAMES ─── */
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes dropIn {from{opacity:0;transform:translateX(-50%) translateY(-8px)}
+                   to  {opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* ─── 4. SCROLL REVEAL ─── */
+.reveal      {opacity:0;transform:translateY(28px); transition:opacity .7s ease,transform .7s ease}
+.reveal-left {opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right{opacity:0;transform:translateX(32px); transition:opacity .7s ease,transform .7s ease}
+.reveal.visible,.reveal-left.visible,.reveal-right.visible{opacity:1;transform:none}
+.delay-0{transition-delay:.00s}.delay-1{transition-delay:.07s}.delay-2{transition-delay:.14s}
+.delay-3{transition-delay:.21s}.delay-4{transition-delay:.28s}.delay-5{transition-delay:.35s}
+.delay-6{transition-delay:.42s}
+
+/* ─── 5. LAYOUT ─── */
+.container   {max-width:var(--max-w);margin-inline:auto;padding-inline:var(--sp-12)}
+.section-pad {padding-block:var(--section-py)}
+.text-center {text-align:center}
+.grid-2-wide {display:grid;grid-template-columns:1fr 1.15fr;gap:var(--sp-16);align-items:center}
+.grid-4      {display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-6);align-items:center}
+
+/* ─── 6. TYPOGRAPHY ─── */
+.heading-cursive-lg   {font-family:var(--font-cursive);font-size:var(--fs-3xl);font-weight:700;color:var(--clr-text);line-height:1.1}
+.heading-cursive-md   {font-family:var(--font-cursive);font-size:var(--fs-2xl);font-weight:700;color:var(--clr-text)}
+.heading-cursive-red  {font-family:var(--font-cursive);font-size:var(--fs-2xl);font-weight:700;color:var(--clr-red-check)}
+.heading-cursive-white{font-family:var(--font-cursive);font-size:clamp(26px,4.5vw,var(--fs-3xl));font-weight:700;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.3);line-height:1.2}
+.text-italic-bold     {font-style:italic;font-weight:700;color:var(--clr-text)}
+.body-text            {font-size:var(--fs-base);font-weight:400;color:var(--clr-text-mid);line-height:1.75}
+.body-text-sm         {font-size:var(--fs-sm);font-weight:400;color:var(--clr-text-light);line-height:1.65}
+
+/* ─── 7. CARD ─── */
+.card     {background:#fff;border:1px solid var(--clr-border);border-radius:var(--radius-md);
+           padding:var(--sp-5) var(--sp-6);
+           transition:box-shadow var(--tr-slow),transform var(--tr-slow),border-color var(--tr-slow)}
+.card:hover{box-shadow:0 6px 24px rgba(0,0,0,.10);transform:translateY(-3px);border-color:#c8e6c9}
+.card-logo{display:flex;align-items:center;justify-content:center;min-height:90px}
+
+/* ─── 8. NAV BUTTONS ─── */
+.btn-nav{display:flex;align-items:center;gap:2px;padding:7px 12px;font-size:12.5px;
+         font-weight:500;color:var(--clr-text);border-radius:var(--radius-pill);
+         white-space:nowrap;transition:background var(--tr-fast),color var(--tr-fast);cursor:pointer}
+.btn-nav:hover {background:rgba(0,0,0,.07);color:var(--clr-green-mid)}
+.btn-nav.active{color:var(--clr-green-mid);font-weight:700}
+.btn-lang{display:flex;align-items:center;gap:var(--sp-1);padding:6px 11px;font-size:12.5px;
+          font-weight:700;color:var(--clr-text);border-radius:var(--radius-pill);
+          border:1px solid rgba(0,0,0,.10);background:rgba(0,0,0,.025);
+          transition:background var(--tr-fast);margin-left:var(--sp-2)}
+.btn-lang:hover{background:rgba(0,0,0,.07)}
+
+/* ─── 9. SOCIAL BUTTON ─── */
+.soc-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.10);
+         border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;
+         justify-content:center;color:rgba(255,255,255,.72);flex-shrink:0;
+         transition:background var(--tr-base),border-color var(--tr-base),transform var(--tr-base)}
+.soc-btn svg{width:16px;height:16px;fill:currentColor}
+.soc-btn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.40);
+               transform:translateY(-2px);color:#fff}
+
+/* ─── 10. GLASS ─── */
+.glass{background:rgba(255,255,255,.50);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+       border:1px solid rgba(255,255,255,.65);
+       box-shadow:0 8px 48px rgba(0,0,0,.12),inset 0 1.5px 0 rgba(255,255,255,.80)}
+
+/* ─── 11. OVERLAYS ─── */
+.overlay-dark {position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.05) 0%,rgba(0,0,0,.02) 55%,rgba(0,0,0,.22) 100%);z-index:1}
+.overlay-green{position:absolute;inset:0;background:rgba(25,52,30,.72);z-index:1}
+
+/* ─── 12. BULLET LIST ─── */
+.bullet-list{display:flex;flex-direction:column;gap:var(--sp-3)}
+.bullet-item{display:flex;align-items:flex-start;gap:var(--sp-3);font-size:14px;color:var(--clr-text-light);line-height:1.55}
+.bullet-dot {color:var(--clr-red-check);font-size:var(--fs-md);flex-shrink:0;margin-top:1px;line-height:1.4}
+
+/* ─── 13. CHECKMARK LIST ─── */
+.check-list     {display:flex;flex-direction:column;text-align:left}
+.check-item     {display:flex;align-items:flex-start;gap:var(--sp-4);padding:14px 0;border-bottom:1px solid var(--clr-border-light)}
+.check-item:last-child{border-bottom:none}
+.check-svg      {width:22px;height:22px;flex-shrink:0;margin-top:1px}
+.check-item-text{font-size:14.5px;color:var(--clr-text-mid);line-height:1.6}
+
+/* ─── 14. NAV DROPDOWN ─── */
+.nav-dropdown{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);
+              background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
+              min-width:240px;padding:var(--sp-2);border:1px solid rgba(0,0,0,.06);
+              display:none;flex-direction:column;z-index:500;animation:dropIn .18s ease forwards}
+.nav-item:hover .nav-dropdown{display:flex}
+.nav-dropdown::before{content:'';position:absolute;top:-7px;left:50%;transform:translateX(-50%);
+                      border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid #fff}
+.drop-link{display:block;padding:11px var(--sp-4);font-size:var(--fs-sm);font-weight:500;
+           color:var(--clr-text);border-radius:var(--radius-md);
+           transition:background var(--tr-fast),color var(--tr-fast)}
+.drop-link:hover{background:var(--clr-green-light);color:var(--clr-green-mid)}
+
+/* ─── 15. FOOTER ─── */
+.footer-root        {background:var(--clr-green-dark);font-family:var(--font-body)}
+.footer-body        {padding-block:var(--sp-12);border-bottom:1px solid rgba(255,255,255,.10)}
+.footer-grid        {display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--sp-10);align-items:center}
+.footer-tagline     {font-family:var(--font-cursive);font-size:26px;font-weight:700;color:#fff;line-height:1.35;max-width:280px}
+.footer-contact-col {display:flex;flex-direction:column;gap:var(--sp-2)}
+.footer-link        {font-size:var(--fs-sm);color:rgba(255,255,255,.72);transition:color var(--tr-base)}
+.footer-link:hover  {color:#fff}
+.footer-social-row  {display:flex;align-items:center;gap:var(--sp-3);justify-content:flex-end;flex-wrap:wrap}
+.footer-bottom      {padding-block:var(--sp-4);background:rgba(0,0,0,.20)}
+.footer-bottom-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3)}
+.footer-copyright   {font-size:var(--fs-xs);color:rgba(255,255,255,.40)}
+.footer-bottom-links{display:flex;align-items:center;gap:var(--sp-2)}
+.footer-bottom-link {font-size:var(--fs-xs);color:rgba(255,255,255,.45);text-decoration:underline;text-underline-offset:2px;transition:color var(--tr-base)}
+.footer-bottom-link:hover{color:rgba(255,255,255,.80)}
+.footer-sep{font-size:var(--fs-xs);color:rgba(255,255,255,.25)}
+
+/* ═══════════════════════════════════════
+   16. STICKY HEADER — Two-state morph
+   ─────────────────────────────────────
+   STATE A  pill-mode   : transparent bg, pill nav centred, logo hidden
+   STATE B  sticky-mode : white full-width bar, logo left, nav right
+═══════════════════════════════════════ */
+#site-header {
+  position:fixed;top:0;left:0;right:0;width:100%;z-index:9999;
+  display:flex;align-items:center;
+  /* Animate all morphing properties */
+  transition:
+    background     .4s ease,
+    box-shadow     .4s ease,
+    border-bottom  .4s ease,
+    padding        .4s ease,
+    height         .4s ease,
+    justify-content .4s ease;
+}
+
+/* ── STATE A: floating pill ── */
+#site-header.pill-mode {
+  justify-content:center;
+  padding:22px 24px 0;
+  height:auto;
+  background:transparent;
+  box-shadow:none;
+  border-bottom:1px solid transparent;
+}
+
+/* ── STATE B: sticky full-width ── */
+#site-header.sticky-mode {
+  justify-content:space-between;
+  padding:0 48px;
+  height:68px;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 2px 0 rgba(0,0,0,.06), 0 4px 24px rgba(0,0,0,.08);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+/* ── Sticky logo (left side in STATE B) ── */
+#sticky-logo {
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;flex-shrink:0;
+  /* Hidden in pill-mode */
+  opacity:0;
+  transform:translateX(-18px);
+  pointer-events:none;
+  visibility:hidden;
+  transition:opacity .35s ease .05s, transform .35s ease .05s, visibility .35s;
+}
+#site-header.sticky-mode #sticky-logo {
+  opacity:1;
+  transform:translateX(0);
+  pointer-events:auto;
+  visibility:visible;
+}
+
+/* ── Nav pill wrapper: morphs shape ── */
+#desktop-nav {
+  display:flex;align-items:center;
+  transition:
+    background       .4s ease,
+    border-radius    .4s ease,
+    padding          .4s ease,
+    box-shadow       .4s ease,
+    border           .4s ease,
+    backdrop-filter  .4s ease;
+}
+#site-header.pill-mode #desktop-nav {
+  background:rgba(255,255,255,.90);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-radius:var(--radius-pill);
+  padding:8px 20px;
+  box-shadow:var(--shadow-hero), inset 0 1px 0 rgba(255,255,255,.7);
+  border:1px solid rgba(255,255,255,.70);
+}
+#site-header.sticky-mode #desktop-nav {
+  background:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border-radius:0;
+  padding:0;
+  box-shadow:none;
+  border:none;
+}
+
+/* ═══════════════════════════════════════
+   17. HERO LOGO — fades out when sticky
+═══════════════════════════════════════ */
+#hero-logo {
+  position:absolute;bottom:52px;left:60px;z-index:10;
+  display:flex;align-items:flex-end;
+  /* Entrance animation */
+  opacity:0;
+  transform:translateX(-28px);
+  transition:opacity .75s ease .35s, transform .75s ease .35s;
+}
+#hero-logo.mounted {
+  opacity:1;
+  transform:translateX(0);
+}
+#hero-logo.hidden {
+  opacity:0;
+  transform:translateX(-20px) scale(0.92);
+  /* Faster exit than entrance */
+  transition:opacity .38s ease, transform .38s ease !important;
+  pointer-events:none;
+}
+
+#hero-quote {
+  position:absolute;bottom:52px;right:60px;z-index:10;max-width:400px;
+  opacity:0;transform:translateY(22px);
+  transition:opacity .75s ease .55s, transform .75s ease .55s;
+}
+#hero-quote.mounted{opacity:1;transform:none}
+
+/* ─── 18. RESPONSIVE ─── */
+@media(max-width:900px){
+  :root{--section-py:64px}
+  .container{padding-inline:var(--sp-6)}
+  .grid-2-wide{grid-template-columns:1fr;gap:var(--sp-10)}
+  .footer-grid{grid-template-columns:1fr;gap:var(--sp-8);text-align:center}
+  .footer-tagline{max-width:100%}
+  .footer-social-row{justify-content:center}
+  .footer-bottom-inner{flex-direction:column;align-items:center;text-align:center}
+  #desktop-nav{display:none!important}
+  #hamburger-btn{display:flex!important}
+  #site-header.sticky-mode{padding:0 20px}
+}
+@media(max-width:760px){
+  .iso-grid{grid-template-columns:1fr!important;gap:var(--sp-8)!important}
+}
+@media(max-width:680px){
+  :root{--section-py:48px}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  #hero-logo{left:18px!important;bottom:32px!important}
+  #hero-quote{right:14px!important;bottom:32px!important;max-width:calc(100vw - 155px)!important}
+  .hero-mark{width:78px!important;height:78px!important}
+  .hero-name{font-size:40px!important}
+  .hero-sub {font-size:9.5px!important;letter-spacing:.16em!important}
+  #hero-quote .glass{padding:16px 18px 14px!important;border-radius:var(--radius-lg)!important}
+}
+@media(max-width:440px){
+  .grid-4{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+     HEADER
+     pill-mode  → transparent, nav centred
+     sticky-mode→ white, full-width, logo left
+════════════════════════════════════ -->
+<header id="site-header" class="pill-mode">
+
+  <!-- Logo: hidden in pill-mode, slides in during sticky-mode -->
+  <a id="sticky-logo" href="#home" aria-label="Du Roi Lab Home">
+    <div style="width:42px;height:42px;flex-shrink:0;filter:drop-shadow(0 2px 8px rgba(0,0,0,.18))">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+        <rect width="100" height="100" fill="#2b8c3e"/>
+        <rect x="0"    y="0"    width="100" height="7.5"  fill="#e6263b"/>
+        <rect x="0"    y="92.5" width="100" height="7.5"  fill="#e6263b"/>
+        <rect x="0"    y="0"    width="7.5" height="100"  fill="#e6263b"/>
+        <rect x="92.5" y="0"    width="7.5" height="100"  fill="#e6263b"/>
+        <path d="M17 85 Q32 50 54 20" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <path d="M17 85 Q50 58 80 22" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <path d="M17 85 Q58 70 85 50" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div style="display:flex;flex-direction:column;line-height:1">
+      <span style="font-family:var(--font-display);font-size:20px;font-weight:900;color:var(--clr-red);letter-spacing:-.5px;line-height:.95">Du<br>Roi</span>
+      <span style="font-family:Arial,sans-serif;font-size:8px;font-weight:700;color:#222;letter-spacing:.22em;margin-top:3px;white-space:nowrap">LABORATORY</span>
+    </div>
+  </a>
+
+  <!-- Desktop nav — morphs between pill and flat -->
+  <nav id="desktop-nav">
+    <ul style="display:flex;align-items:center;gap:2px;list-style:none">
+      <li><a href="#home"    class="btn-nav active">Home</a></li>
+      <li class="nav-item" style="position:relative">
+        <a href="#" class="btn-nav" style="display:flex;align-items:center;gap:2px">
+          Our Company
+          <svg width="15" height="15" viewBox="0 0 24 24" style="fill:#999;margin-left:-3px;flex-shrink:0"><path d="M7 10l5 5 5-5z"/></svg>
+        </a>
+        <div class="nav-dropdown">
+          <a href="#" class="drop-link">About Us</a>
+          <a href="#" class="drop-link">Our People</a>
+          <a href="#" class="drop-link">Corporate Social Investment</a>
+        </div>
+      </li>
+      <li><a href="#needs"   class="btn-nav">Banana Plants</a></li>
+      <li><a href="#"        class="btn-nav">Formosana</a></li>
+      <li><a href="#"        class="btn-nav">Media &amp; Publications</a></li>
+      <li><a href="#"        class="btn-nav">Gallery</a></li>
+      <li><a href="#contact" class="btn-nav">Contact</a></li>
+      <li>
+        <a href="#" class="btn-lang" style="display:flex;align-items:center">
+          <img src="https://duroilab.co.za/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_US.png"
+               alt="EN" style="width:18px;height:12px;object-fit:cover;border-radius:2px"
+               onerror="this.style.display='none'"/>
+          <span style="margin-left:5px">EN</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" style="fill:#999;margin-left:-2px"><path d="M7 10l5 5 5-5z"/></svg>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Mobile hamburger -->
+  <button id="hamburger-btn" onclick="toggleMobile()" aria-label="Menu" style="
+    display:none;pointer-events:all;
+    background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.10);
+    border-radius:var(--radius-md);padding:8px;
+    flex-direction:column;gap:4px;cursor:pointer;">
+    <span id="hb1" style="display:block;width:22px;height:2px;background:#333;border-radius:2px;transition:all .3s"></span>
+    <span id="hb2" style="display:block;width:22px;height:2px;background:#333;border-radius:2px;transition:all .3s"></span>
+    <span id="hb3" style="display:block;width:22px;height:2px;background:#333;border-radius:2px;transition:all .3s"></span>
+  </button>
+</header>
+
+<!-- Mobile drawer -->
+<div id="mobile-menu" style="display:none;position:fixed;top:0;left:0;right:0;
+  background:rgba(255,255,255,.98);padding:72px 24px 28px;box-shadow:var(--shadow-lg);
+  flex-direction:column;gap:4px;z-index:9998;">
+  <a href="#home"    onclick="closeMobile()" style="padding:12px 16px;font-size:14px;font-weight:700;color:var(--clr-green-mid);border-bottom:1px solid var(--clr-border-light)">Home</a>
+  <a href="#"        onclick="closeMobile()" style="padding:12px 16px;font-size:14px;font-weight:500;color:var(--clr-text);border-bottom:1px solid var(--clr-border-light)">Our Company</a>
+  <a href="#needs"   onclick="closeMobile()" style="padding:12px 16px;font-size:14px;font-weight:500;color:var(--clr-text);border-bottom:1px solid var(--clr-border-light)">Banana Plants</a>
+  <a href="#"        onclick="closeMobile()" style="padding:12px 16px;font-size:14px;font-weight:500;color:var(--clr-text);border-bottom:1px solid var(--clr-border-light)">Formosana</a>
+  <a href="#"        onclick="closeMobile()" style="padding:12px 16px;font-size:14px;font-weight:500;color:var(--clr-text);border-bottom:1px solid var(--clr-border-light)">Media &amp; Publications</a>
+  <a href="#"        onclick="closeMobile()" style="padding:12px 16px;font-size:14px;font-weight:500;color:var(--clr-text);border-bottom:1px solid var(--clr-border-light)">Gallery</a>
+  <a href="#contact" onclick="closeMobile()" style="padding:12px 16px;font-size:14px;font-weight:500;color:var(--clr-text)">Contact</a>
+</div>
+
+<!-- ════════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section id="home" style="position:relative;width:100%;height:100vh;min-height:560px;overflow:hidden;display:flex;flex-direction:column;">
+
+  <!-- Background image with slow Ken-Burns zoom -->
+  <div style="position:absolute;inset:0;
+    background-image:url('https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg');
+    background-size:cover;background-position:center 38%;
+    animation:heroZoom 22s ease-in-out infinite alternate;z-index:0;"></div>
+
+  <!-- Light vignette -->
+  <div class="overlay-dark"></div>
+
+  <!-- ── Du Roi Logo — bottom left
+       Fades + slides out when sticky header logo appears ── -->
+  <div id="hero-logo">
+    <!-- Green SVG mark -->
+    <div class="hero-mark" style="width:115px;height:115px;flex-shrink:0;
+         filter:drop-shadow(0 4px 22px rgba(0,0,0,.30))">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+        <rect width="100" height="100" fill="#2b8c3e"/>
+        <rect x="0"    y="0"    width="100" height="7.5"  fill="#e6263b"/>
+        <rect x="0"    y="92.5" width="100" height="7.5"  fill="#e6263b"/>
+        <rect x="0"    y="0"    width="7.5" height="100"  fill="#e6263b"/>
+        <rect x="92.5" y="0"    width="7.5" height="100"  fill="#e6263b"/>
+        <path d="M17 85 Q32 50 54 20" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <path d="M17 85 Q50 58 80 22" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <path d="M17 85 Q58 70 85 50" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- "Du Roi" red text + "LABORATORY" sub -->
+    <div style="display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:5px;padding-left:2px">
+      <span class="hero-name" style="font-family:var(--font-display);font-size:62px;font-weight:900;
+            color:var(--clr-red);line-height:.92;letter-spacing:-1px;
+            text-shadow:0 2px 18px rgba(0,0,0,.22)">Du<br>Roi</span>
+      <span class="hero-sub" style="font-family:Arial,sans-serif;font-size:14px;font-weight:700;
+            color:#111;letter-spacing:.28em;margin-top:6px;
+            text-shadow:0 1px 8px rgba(255,255,255,.55);white-space:nowrap">LABORATORY</span>
+    </div>
+  </div>
+
+  <!-- ── Quote card — bottom right ── -->
+  <div id="hero-quote">
+    <div class="glass" style="border-radius:var(--radius-xl);padding:22px 30px 20px">
+      <p style="font-family:Georgia,serif;font-size:17px;font-weight:700;color:#192a1e;
+                line-height:1.45;margin-bottom:8px;letter-spacing:-.01em">
+        "What you plant now, you will harvest later"
+      </p>
+      <p class="body-text-sm" style="color:#4a5f4e;letter-spacing:.02em">– Og Mandino</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════
+     SPECIALISTS
+════════════════════════════════════ -->
+<section class="section-pad text-center" id="specialists">
+  <div class="container">
+    <div class="reveal" style="max-width:560px;margin-inline:auto">
+      <p class="body-text" style="font-size:var(--fs-md);line-height:1.85">
+        <span class="heading-cursive-lg" style="margin-right:6px;vertical-align:middle;line-height:1">Specialists</span>
+        in the production and distribution of<br>
+        high-quality, elite selection disease-free, virus-indexed<br>
+        high yielding tissue culture <em style="font-style:italic">banana plants</em>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     YOU NEED
+════════════════════════════════════ -->
+<section class="section-pad" id="needs">
+  <div class="container">
+    <div class="grid-2-wide">
+      <div class="reveal-left">
+        <h2 style="margin-bottom:var(--sp-8)"><span class="heading-cursive-md">You Need:</span></h2>
+        <ul class="bullet-list">
+          <li class="bullet-item"><span class="bullet-dot">•</span>Plants that are free of pests and diseases</li>
+          <li class="bullet-item"><span class="bullet-dot">•</span>Maximised yields</li>
+          <li class="bullet-item"><span class="bullet-dot">•</span>Quick and efficient plantation conversions or expansions</li>
+          <li class="bullet-item"><span class="bullet-dot">•</span>Uniformity in your plantations</li>
+          <li class="bullet-item"><span class="bullet-dot">•</span>A reliable and trustworthy supplier</li>
+          <li class="bullet-item"><span class="bullet-dot">•</span>Vigorous plant growth</li>
+        </ul>
+      </div>
+      <div class="reveal-right">
+        <img src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg"
+             alt="Banana tissue culture plant"
+             style="width:100%;height:400px;object-fit:cover;border-radius:var(--radius-sm)"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     WHY CHOOSE US
+════════════════════════════════════ -->
+<section class="section-pad text-center" id="why">
+  <div class="container">
+    <h2 class="reveal" style="margin-bottom:var(--sp-10)">
+      <span class="text-italic-bold" style="font-size:var(--fs-xl)">Why </span>
+      <span class="heading-cursive-red">Choose Us?</span>
+    </h2>
+    <ul class="check-list" style="max-width:680px;margin-inline:auto">
+      <li class="check-item reveal delay-0"><svg class="check-svg" viewBox="0 0 22 22"><rect width="22" height="22" rx="3" fill="#c0392b"/><path d="M5 11.5l4 4 8-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><span class="check-item-text">More than 30 years of experience in tissue culture</span></li>
+      <li class="check-item reveal delay-1"><svg class="check-svg" viewBox="0 0 22 22"><rect width="22" height="22" rx="3" fill="#c0392b"/><path d="M5 11.5l4 4 8-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><span class="check-item-text">A quality product which is the result of proven research and development trials</span></li>
+      <li class="check-item reveal delay-2"><svg class="check-svg" viewBox="0 0 22 22"><rect width="22" height="22" rx="3" fill="#c0392b"/><path d="M5 11.5l4 4 8-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><span class="check-item-text">World renowned technical expertise</span></li>
+      <li class="check-item reveal delay-3"><svg class="check-svg" viewBox="0 0 22 22"><rect width="22" height="22" rx="3" fill="#c0392b"/><path d="M5 11.5l4 4 8-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><span class="check-item-text">Established international markets</span></li>
+      <li class="check-item reveal delay-4"><svg class="check-svg" viewBox="0 0 22 22"><rect width="22" height="22" rx="3" fill="#c0392b"/><path d="M5 11.5l4 4 8-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><span class="check-item-text">ISO 9001 certification for the management system for the production of banana tissue culture plants</span></li>
+      <li class="check-item reveal delay-5"><svg class="check-svg" viewBox="0 0 22 22"><rect width="22" height="22" rx="3" fill="#c0392b"/><path d="M5 11.5l4 4 8-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><span class="check-item-text">Export support</span></li>
+      <li class="check-item reveal delay-6"><svg class="check-svg" viewBox="0 0 22 22"><rect width="22" height="22" rx="3" fill="#c0392b"/><path d="M5 11.5l4 4 8-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><span class="check-item-text">Technical support</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     WORLD CLASS BANNER
+════════════════════════════════════ -->
+<section style="position:relative;width:100%;height:280px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:url('https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg');background-size:cover;background-position:center;z-index:0"></div>
+  <div class="overlay-green"></div>
+  <div style="position:relative;z-index:2;text-align:center;padding:0 var(--sp-6)">
+    <h2 class="heading-cursive-white reveal">World class technology from Africa</h2>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     ISO / MAP
+════════════════════════════════════ -->
+<section class="section-pad" id="world">
+  <div class="container">
+    <p class="body-text reveal" style="margin-bottom:var(--sp-12)">
+      Experienced in supplying into various countries and ensuring a seamless process.
+    </p>
+    <div class="iso-grid" style="display:grid;grid-template-columns:260px 1fr;gap:var(--sp-16);align-items:flex-start">
+      <div class="reveal-left" style="display:flex;flex-direction:column;gap:var(--sp-4)">
+        <img src="https://duroilab.co.za/wp-content/uploads/2024/11/sgs-logo-9001-iso-zertifikat_817_2-3995511386-scaled-1.jpg"
+             alt="SGS ISO 9001" style="width:130px;height:auto;object-fit:contain" onerror="this.style.display='none'"/>
+        <div>
+          <p class="body-text-sm" style="font-weight:700;color:var(--clr-red-check);margin-bottom:var(--sp-1)"><strong>Du Roi Laboratory</strong></p>
+          <p class="body-text-sm">is ISO 9001 certified since 2011 for the management system for the production of banana tissue culture plants.</p>
+        </div>
+      </div>
+      <div class="reveal-right" style="position:relative">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png"
+             alt="World map" style="width:100%;height:auto;opacity:.55;filter:grayscale(20%);display:block"
+             onerror="this.outerHTML='<div style=\'background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:var(--radius-md);height:200px;display:flex;align-items:center;justify-content:center;color:var(--clr-green-mid);font-weight:600;font-size:14px;\'>🌍 Supplying to 50+ countries worldwide</div>'"/>
+        <div style="position:absolute;bottom:12px;right:12px;background:rgba(255,255,255,.92);border:1px solid #c8e6c9;border-radius:var(--radius-pill);padding:5px 12px;display:flex;align-items:center;gap:var(--sp-1);font-size:var(--fs-xs);font-weight:600;color:var(--clr-green-mid);box-shadow:var(--shadow-sm)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--clr-green-mid)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Africa &amp; Global
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     GROUP LOGOS
+════════════════════════════════════ -->
+<section class="section-pad" id="group" style="border-top:1px solid var(--clr-border-light)">
+  <div class="container">
+    <p class="body-text reveal" style="margin-bottom:var(--sp-10)">
+      Visit our associate nursery websites within the <strong style="font-weight:700;color:var(--clr-text)">Du Roi Group:</strong>
+    </p>
+    <div class="grid-4">
+      <a href="https://cederbergtreenursery.co.za/" target="_blank" rel="noopener" class="card card-logo reveal delay-0"><img src="https://duroihalls.co.za/wp-content/uploads/2023/01/Cederberg-Logo-1024x367-1.png" alt="Cederberg" style="max-height:60px;width:auto;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span style="display:none;font-size:var(--fs-xs);font-weight:600;color:var(--clr-green-mid);text-align:center">Cederberg Tree Nursery</span></a>
+      <a href="https://www.duroihalls.co.za/"       target="_blank" rel="noopener" class="card card-logo reveal delay-1"><img src="https://duroilab.co.za/wp-content/uploads/2024/11/HALLS057-DuRoi-logo-FA-PANTONE.png" alt="Du Roi Halls" style="max-height:60px;width:auto;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span style="display:none;font-size:var(--fs-xs);font-weight:600;color:var(--clr-green-mid);text-align:center">Du Roi Halls</span></a>
+      <a href="http://www.duroinursery.co.za/"      target="_blank" rel="noopener" class="card card-logo reveal delay-2"><img src="https://duroilab.co.za/wp-content/uploads/2024/11/Du-Roi-Nursery_Final-Logo.jpg" alt="Du Roi Nursery" style="max-height:60px;width:auto;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span style="display:none;font-size:var(--fs-xs);font-weight:600;color:var(--clr-green-mid);text-align:center">Du Roi Nursery</span></a>
+      <a href="https://www.duroimultiplant.co.za/"  target="_blank" rel="noopener" class="card card-logo reveal delay-3"><img src="https://duroilab.co.za/wp-content/uploads/2024/04/Du-Roi-Multiplant_Final-Logo.jpg" alt="Du Roi Multiplant" style="max-height:60px;width:auto;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span style="display:none;font-size:var(--fs-xs);font-weight:600;color:var(--clr-green-mid);text-align:center">Du Roi Multiplant</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer class="footer-root" id="contact">
+  <div class="footer-body">
+    <div class="container">
+      <div class="footer-grid">
+        <div><p class="footer-tagline"><em>Quality is an investment in the future.</em></p></div>
+        <div class="footer-contact-col">
+          <a href="mailto:info@duroilab.co.za" class="footer-link">info@duroilab.co.za</a>
+          <a href="tel:+27153451217"           class="footer-link">+27 15 345 1217</a>
+        </div>
+        <div class="footer-social-row">
+          <a href="https://www.facebook.com/DuRoiGroup"           target="_blank" rel="noopener" class="soc-btn" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/duroigroup/"          target="_blank" rel="noopener" class="soc-btn" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://www.youtube.com/@DuRoiGroup"            target="_blank" rel="noopener" class="soc-btn" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a3a22"/></svg></a>
+          <a href="https://wa.me/27764306830"                      target="_blank" rel="noopener" class="soc-btn" title="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+          <a href="https://www.linkedin.com/company/du-roi-group/" target="_blank" rel="noopener" class="soc-btn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner">
+        <p class="footer-copyright">© Copyright – Du Roi Laboratory</p>
+        <div class="footer-bottom-links">
+          <a href="https://citrusgin.co.za/wp-content/uploads/2021/06/ANB_Protection-of-Personal-Information-Policy_2021-1.pdf" target="_blank" rel="noopener" class="footer-bottom-link">POPI Policy</a>
+          <span class="footer-sep">|</span>
+          <a href="https://www.tinygiantstudios.co.za/" target="_blank" rel="noopener" class="footer-bottom-link">Site Credits</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════ -->
+<script>
+const header    = document.getElementById('site-header')
+const heroLogo  = document.getElementById('hero-logo')
+const heroQuote = document.getElementById('hero-quote')
+
+/* ─── Scroll: morph header + hide/show hero logo ─── */
+function handleScroll() {
+  /* Switch at 80% of viewport height */
+  const passed = window.scrollY > window.innerHeight * 0.8
+
+  if (passed) {
+    header.classList.replace('pill-mode', 'sticky-mode')
+    heroLogo.classList.add('hidden')
+  } else {
+    header.classList.replace('sticky-mode', 'pill-mode')
+    heroLogo.classList.remove('hidden')
+  }
+}
+
+window.addEventListener('scroll', handleScroll, { passive: true })
+handleScroll() /* run on first paint */
+
+/* ─── Hero entrance (after tiny delay so CSS is applied) ─── */
+setTimeout(() => {
+  heroLogo.classList.add('mounted')
+  heroQuote.classList.add('mounted')
+}, 80)
+
+/* ─── Mobile nav ─── */
+let mobileOpen = false
+function toggleMobile() {
+  mobileOpen = !mobileOpen
+  document.getElementById('mobile-menu').style.display = mobileOpen ? 'flex' : 'none'
+  document.getElementById('hb1').style.transform = mobileOpen ? 'rotate(45deg) translate(4px,4px)'  : 'none'
+  document.getElementById('hb2').style.opacity   = mobileOpen ? '0' : '1'
+  document.getElementById('hb3').style.transform = mobileOpen ? 'rotate(-45deg) translate(4px,-4px)' : 'none'
+}
+function closeMobile() {
+  mobileOpen = false
+  document.getElementById('mobile-menu').style.display = 'none'
+  document.getElementById('hb1').style.transform = 'none'
+  document.getElementById('hb2').style.opacity   = '1'
+  document.getElementById('hb3').style.transform = 'none'
+}
+
+/* ─── Scroll reveal ─── */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return
+    const targets = e.target.querySelectorAll('.reveal,.reveal-left,.reveal-right')
+    if (targets.length) {
+      targets.forEach((el, i) => setTimeout(() => el.classList.add('visible'), i * 70))
+    } else if (e.target.classList.contains('reveal') ||
+               e.target.classList.contains('reveal-left') ||
+               e.target.classList.contains('reveal-right')) {
+      e.target.classList.add('visible')
+    }
+    revObs.unobserve(e.target)
+  })
+}, { threshold: 0.10 })
+
+document.querySelectorAll('section, footer').forEach(s => revObs.observe(s))
+</script>
+</body>
+</html>
