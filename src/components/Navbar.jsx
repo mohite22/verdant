@@ -14,8 +14,9 @@ const NAV_ITEMS = [
     ],
   },
   { label: 'Banana Plants',        hash: '#/banana-plants'      },
-  { label: 'Formosana',            hash: '#/formosana'          },
-  { label: 'Media & Publications', hash: '#/media-publications' },
+  { label: 'Pomegranate Plants',   hash: '#/pomegranate-plants' },
+  // { label: 'Formosana',            hash: '#/formosana'          },
+  // { label: 'Media & Publications', hash: '#/media-publications' },
   { label: 'Gallery',              hash: '#/gallery'            },
   { label: 'Contact',              hash: '#/contact'            },
 ]

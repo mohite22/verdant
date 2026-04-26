@@ -42,7 +42,7 @@ export default function WorldClass() {
         }}
       >
         <h2 className="heading-cursive-white reveal">
-          World class technology from Africa
+        World class technology from India
         </h2>
       </div>
     </section>

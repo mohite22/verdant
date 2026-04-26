@@ -1,12 +1,13 @@
 import { useReveal } from '../hooks/useReveal'
+import bananaimg from '../assets/Bnan22.jpg'
 
 const NEEDS = [
-  'Plants that are free of pests and diseases',
-  'Maximised yields',
-  'Quick and efficient plantation conversions or expansions',
-  'Uniformity in your plantations',
   'A reliable and trustworthy supplier',
-  'Vigorous plant growth',
+  'Vigorous, healthy plant growth',
+  'Pest- and disease-free plants',
+  'Timely availability for plantation',
+  'Maximized yields',
+  'Uniform, consistent plantations',
 ]
 
 export default function YouNeed() {
@@ -34,8 +35,9 @@ export default function YouNeed() {
 
           {/* Right — photo */}
           <div className="reveal-right">
-            <img
-              src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg"
+            {/* <img
+              // src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg"
+              src={bananaimg}
               alt="Banana tissue culture plant with roots"
               style={{
                 width: '100%',
@@ -44,7 +46,17 @@ export default function YouNeed() {
                 borderRadius: 'var(--radius-sm)',
                 display: 'block',
               }}
-            />
+            /> */}
+            <img
+                          // src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg"
+                          src={bananaimg}
+                          alt="Banana tissue culture plant with roots"
+                          style={{
+                            width: '100%', height: 460,
+                            objectFit: 'cover', borderRadius: 'var(--radius-lg)',
+                            display: 'block', boxShadow: 'var(--shadow-lg)',
+                          }}
+                        />
           </div>
 
         </div>

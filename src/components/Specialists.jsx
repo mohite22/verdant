@@ -14,12 +14,14 @@ export default function Specialists() {
             >
               Specialists
             </span>
-            in the production and distribution of
+            in the production and distribution of high-quality, elite, disease-free, virus-indexed planting material—offering high-yielding tissue culture Banana and Pomegranate plants, along with premium single eye bud Sugarcane seedlings.
+
+{/* 
             <br />
             high-quality, elite selection disease-free, virus-indexed
             <br />
             high yielding tissue culture{' '}
-            <em style={{ fontStyle: 'italic' }}>banana plants</em>.
+            <em style={{ fontStyle: 'italic' }}>banana plants</em>. */}
           </p>
         </div>
       </div>

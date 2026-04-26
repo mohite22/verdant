@@ -13,7 +13,7 @@ export default function IsoSection() {
           className="body-text reveal"
           style={{ marginBottom: 'var(--sp-12)' }}
         >
-          Experienced in supplying into various countries and ensuring a seamless process.
+          Extensive experience in international supply, ensuring a seamless end-to-end process.
         </p>
 
         {/* Two-column layout */}
@@ -31,12 +31,12 @@ export default function IsoSection() {
             className="reveal-left flex-col gap-4"
             style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)' }}
           >
-            <img
+            {/* <img
               src="https://duroilab.co.za/wp-content/uploads/2024/11/sgs-logo-9001-iso-zertifikat_817_2-3995511386-scaled-1.jpg"
               alt="SGS ISO 9001 Certification badge"
               style={{ width: 130, height: 'auto', objectFit: 'contain' }}
               onError={(e) => { e.currentTarget.style.display = 'none' }}
-            />
+            /> */}
             <div>
               <p
                 className="body-text-sm"
@@ -47,11 +47,10 @@ export default function IsoSection() {
                   fontSize: 'var(--fs-sm)',
                 }}
               >
-                <strong>Du Roi Laboratory</strong>
+                <strong>Verdant bioAgri LLP</strong>
               </p>
               <p className="body-text-sm">
-                is ISO 9001 certified since 2011 for the management system for
-                the production of banana tissue culture plants.
+              Advanced Laboratory Facilities: Among the most advanced tissue culture facilities in India.
               </p>
             </div>
           </div>

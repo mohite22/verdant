@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import bananaimg1 from '../assets/GrandeNain02.jpg'
+import bananaimg2 from '../assets/yellkibanana.jpg'
+import bananaimg3 from '../assets/banan23.jpeg'
 
 /* ─── Shared scroll-reveal hook ─── */
 function useReveal(threshold = 0.1) {
@@ -32,92 +35,39 @@ function useReveal(threshold = 0.1) {
 const VARIETIES = [
   {
     id: 'williams',
-    name: 'Williams',
+    name: 'Grand Nain Variety:',
     tag: 'Standard Cavendish',
     color: '#2b8c3e',
-    img: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg',
+    img: bananaimg1,
     description:
-      'Williams is the most widely planted banana variety worldwide. It produces high-quality, well-filled bunches and has excellent keeping quality. Our elite selection is chosen for vigorous growth, uniformity and superior commercial yield potential.',
+      ' Bananas for high yield Plantation. Elevate your banana cultivation with the Grand Nain variety – Asia’s preferred table-top banana renowned for its exceptional qualities. Tissue Culture Grand Nain thrives in high-density planting, offering a delightful combination of taste and better yield.',
     features: [
-      'High commercial yield potential',
-      'Excellent bunch fill and fruit quality',
-      'Uniform plant growth for efficient harvesting',
-      'Vigorous root system and plant stability',
+      'Abundant Harvest: Each bunch boasts 10 to 12 hands, carrying 175 to 225 fruits, ensuring a plentiful yield.',
+      'Delicious Taste: Recognized as a preferred dessert banana, the Grand Nain variety delights with its exquisite flavor.',
+      'High Yielding: Achieve an impressive average yield of 25 kg to 45 per plant, making it a productive choice for commercial cultivation.',
+      'Distinct Fruit Characteristics: Enjoy long cylindrical fruits with minimal curvature, measuring approximately 7 to 11 inches in length.',
+      'Good Keeping Quality: Grand Nain offers excellent storage potential, maintaining its freshness for an extended period.',
+      'Versatile Use: Internationally accepted both as fresh fruit and for various processing applications, owing to its greater pulp to peel ratio.',
+      'Aesthetic Appeal: With attractive yellowish-green coloration at maturity, Grand Nain adds a touch of elegance to your plantation.',
     ],
   },
   {
     id: 'asdia',
-    name: 'Asdia',
+    name: 'Yelakki Banana Variety : ',
     tag: 'Improved Williams Selection',
     color: '#1a6e2e',
-    img: 'https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg',
+    img: bananaimg2,
     description:
-      'Asdia is an improved selection of Williams with a shorter plant height and a faster cycle, bunch to bunch. The shorter cropping cycles deliver higher yield per hectare per annum, and the shorter plant height makes it much easier to manage, especially in windy conditions. Bunch characteristics are very similar to Williams.',
+      'India’s Beloved Elachi Banana. Indulge in the exquisite taste of Yelakki, India’s favorite banana, affectionately known as Elachi Banana. Celebrated for its extraordinary flavor, firm texture, and vibrant yellow hue, Yelakki is a commercial staple in regions, especially Tamil Nadu and Karnataka.',
     features: [
-      'Shorter plant height — easier to manage',
-      'Faster bunch-to-bunch cycle',
-      'Higher yield per hectare per annum',
-      'Vigorous growth — requires good management',
-    ],
-  },
-  {
-    id: 'formosana',
-    name: 'Formosana',
-    tag: 'TR4 Tolerant Variety',
-    color: '#c0392b',
-    img: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg',
-    description:
-      'Formosana is a Cavendish banana variety with a high tolerance to Fusarium oxysporum f. sp. cubense Tropical Race 4 (Foc TR4), acquired through somaclonal variation by the Taiwan Banana Research Institute (TBRI). Du Roi holds the exclusive licence to supply Formosana into Africa, the Middle East, Caribbean Islands, French West Indies and South & Central America.',
-    features: [
-      'High tolerance to Fusarium TR4',
-      'Cavendish-type fruit quality',
-      'Exclusive supply agreement with TBRI',
-      'Suitable for TR4-risk growing regions',
-    ],
-  },
-  {
-    id: 'nandi',
-    name: 'Nandi',
-    tag: 'Cavendish Selection',
-    color: '#b8972a',
-    img: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg',
-    description:
-      'Nandi is a robust Cavendish selection favoured for its consistent bunch weight, excellent fruit filling and strong plant frame. It performs well across a range of climatic conditions and is popular in East African markets for its adaptability.',
-    features: [
-      'Consistent, heavy bunch weight',
-      'Strong plant structure and frame',
-      'Broad climatic adaptability',
-      'Popular in East African markets',
-    ],
-  },
-  {
-    id: 'chico',
-    name: 'Chico',
-    tag: 'Export-Grade Cavendish',
-    color: '#2b6cb0',
-    img: 'https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg',
-    description:
-      'Chico is a high-quality Cavendish variety selected for its superior fruit appearance, uniformity and excellent export characteristics. It is widely cultivated for premium markets requiring top fruit grade and consistent presentation.',
-    features: [
-      'Superior fruit appearance and uniformity',
-      'Premium export-grade quality',
-      'Consistent fruit presentation',
-      'Suitable for premium fresh markets',
-    ],
-  },
-  {
-    id: 'apollo',
-    name: 'Apollo',
-    tag: 'High-Yield Selection',
-    color: '#6b46c1',
-    img: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg',
-    description:
-      'Apollo is a high-yielding Cavendish selection known for its particularly large bunch size, excellent grade distribution and strong field performance. It is a popular choice for growers targeting high production volumes in subtropical conditions.',
-    features: [
-      'Exceptionally large bunch size',
-      'Excellent grade distribution',
-      'Strong field performance',
-      'Ideal for high-volume subtropical production',
+      'Cultivation Prowess: Widely cultivated commercially, Yelakki stands tall as the preferred banana in Tamil Nadu and Karnataka.',
+      'Elegant Appearance: The slender, medium-tall plant bears dark green fruits, transforming into a resplendent golden yellow or bright yellow upon ripening.',
+      'Aromatic Delight: Recognized for its highly fragrant and tasty fruits, Yelakki earns its popular moniker, the “Elaichi Banana.”',
+      'Unique Plant Appearance: The plants carrying Yelakki fruits are smaller, with a distinctive windblown appearance due to closely packed, beak-like structures around the axis.',
+      'Ivory White Pulp: Delight in the ivory white pulp of Yelakki, enhancing its visual and culinary appeal.',
+      'Transportation Suitability: Specially suited for long-distance transportation, making it a practical choice for various markets.',
+      'Abundant Harvest: Yelakki has the capacity to produce 10-14 hands and 12-15 fingers, comprising 100-150 fruits per plant.',
+      'Optimal Fruit Length: Enjoy fruits of ideal length, measuring 4 to 5 inches, offering a perfect bite-sized delight.',
     ],
   },
 ]
@@ -224,11 +174,10 @@ function PageHero() {
             color: 'rgba(255,255,255,0.85)', lineHeight: 1.75,
             maxWidth: 560, marginBottom: 32,
           }}>
-            Elite selection, disease-free, virus-indexed tissue culture banana plants —
-            produced to the highest international quality standards.
+            Elevate Your Harvest with Excellence
           </p>
           {/* ISO badge */}
-          <div style={{
+          {/* <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
             background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(8px)',
             border: '1px solid rgba(255,255,255,0.25)', borderRadius: 'var(--radius-pill)',
@@ -238,7 +187,7 @@ function PageHero() {
             <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.06em' }}>
               ISO 9001 Certified Since 2011
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
@@ -262,14 +211,10 @@ function TissueIntro() {
             </h2>
             <div className="section-divider-line" />
             <p style={{ fontSize: 15, color: 'var(--clr-text-mid)', lineHeight: 1.85, marginBottom: 20 }}>
-              Tissue culture is the rapid multiplication of plant selections and offers the benefit of
-              converting or expanding plantations quickly and efficiently with superior selections of
-              disease-free plants.
+            Tissue culture is the rapid multiplication of plant selections and offers the benefit of converting or expanding plantations quickly and efficiently with superior selections of disease-free plants. All laboratory varieties are selected for their vigorous growth, high commercial yield potential, plant stability and uniformity.
             </p>
             <p style={{ fontSize: 15, color: 'var(--clr-text-mid)', lineHeight: 1.85, marginBottom: 20 }}>
-              All our banana plants are sourced from our foundation block, established and evaluated
-              with the help of world-renowned banana specialist <strong>Dr. John Robinson</strong>.
-              Complete traceability from foundation block to grower.
+            Unlock the potential of superior banana cultivation with our quality tissue culture banana plants. Embrace the advantages of tissue culture, including uniform yields, precise variety selection, disease resistance, and accelerated, abundant harvests compared to traditional planting methods.
             </p>
             <p style={{ fontSize: 15, color: 'var(--clr-text-mid)', lineHeight: 1.85 }}>
               All laboratory varieties are selected for their <strong>vigorous growth, high commercial
@@ -280,7 +225,8 @@ function TissueIntro() {
           {/* Image */}
           <div className="reveal-right" style={{ position: 'relative' }}>
             <img
-              src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg"
+              // src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg"
+              src={bananaimg3}
               alt="Banana tissue culture plant with roots"
               style={{
                 width: '100%', height: 460,
@@ -401,22 +347,23 @@ function VarietiesSection() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 'var(--sp-6)' }} className="varieties-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 'var(--sp-6)', alignItems: 'stretch' }} className="varieties-grid">
           {VARIETIES.map((v, i) => (
             <div
               key={v.id}
               className="reveal"
-              style={{ transitionDelay: `${i * 0.08}s` }}
+              style={{ transitionDelay: `${i * 0.08}s`, height: '100%' }}
             >
               <div
                 style={{
                   background: '#fff', borderRadius: 'var(--radius-lg)',
-                  overflow: 'hidden', boxShadow: 'var(--shadow-sm)',
+                  overflow: 'hidden',
                   border: `1px solid ${activeVar === v.id ? v.color : 'var(--clr-border)'}`,
                   cursor: 'pointer',
                   transition: 'all var(--tr-slow)',
                   transform: activeVar === v.id ? 'translateY(-6px)' : 'none',
                   boxShadow: activeVar === v.id ? `0 12px 40px ${v.color}25` : 'var(--shadow-sm)',
+                  height: '100%', display: 'flex', flexDirection: 'column',
                 }}
                 onMouseEnter={() => setActiveVar(v.id)}
                 onMouseLeave={() => setActiveVar(null)}
@@ -443,7 +390,7 @@ function VarietiesSection() {
                 </div>
 
                 {/* Content */}
-                <div style={{ padding: 'var(--sp-6)' }}>
+                <div style={{ padding: 'var(--sp-6)', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <h3 style={{
                     fontFamily: 'var(--font-cursive)', fontSize: 28, fontWeight: 700,
                     color: 'var(--clr-green-dark)', marginBottom: 'var(--sp-3)',
@@ -472,7 +419,6 @@ function VarietiesSection() {
         </div>
       </div>
       <style>{`
-        @media(max-width:960px){ .varieties-grid{ grid-template-columns:repeat(2,1fr) !important; } }
         @media(max-width:580px){ .varieties-grid{ grid-template-columns:1fr !important; } }
       `}</style>
     </section>

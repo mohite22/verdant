@@ -3,19 +3,23 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import PageHero from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
+import bnvimg1 from '../assets/bnv1.jpg'
+import bnvimg2 from '../assets/bnv2.jpg'
+import bnvimg3 from '../assets/bnv3.jpg'
+
+import pnvimg1 from '../assets/pnv1.jpg'
+import pnvimg2 from '../assets/pnv2.jpg'
+import pnvimg3 from '../assets/pnv3.jpeg'
 
 const CATS = ['All', 'Laboratory', 'Plants', 'Plantation', 'Export']
 
 const PHOTOS = [
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg', cat: 'Plantation', caption: 'Banana nursery — Letsitele, Limpopo' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg',               cat: 'Plants',     caption: 'Tissue culture plant with healthy root system' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg',               cat: 'Plants',     caption: 'Elite selection plants in hardening nursery' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg', cat: 'Laboratory', caption: 'Laminar flow bench work in sterile conditions' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg',               cat: 'Export',     caption: 'In vitro plants prepared for air freight export' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg',               cat: 'Plantation', caption: 'Field-ready plants at the 20 cm stage' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg', cat: 'Laboratory', caption: 'Controlled growth rooms — 10 rooms on-site' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg',               cat: 'Plants',     caption: 'Williams variety from the elite foundation block' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg',               cat: 'Export',     caption: 'Phytosanitary inspection before international shipment' },
+  { src: bnvimg1, cat: 'Plantation', caption: 'Banana nursery — Letsitele, Limpopo' },
+  { src: bnvimg2, cat: 'Plantation', caption: 'Healthy banana plants in the nursery' },
+  { src: bnvimg3, cat: 'Plantation', caption: 'Banana plants ready for field planting' },
+  { src: pnvimg1, cat: 'Plants', caption: 'Tissue culture plant with healthy root system' },
+  { src: pnvimg2, cat: 'Plants', caption: 'Elite selection plants in hardening nursery' },
+  { src: pnvimg3, cat: 'Plants', caption: 'Field-ready plants at the 20 cm stage' },
 ]
 
 export default function Gallery() {
