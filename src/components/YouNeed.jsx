@@ -1,5 +1,5 @@
 import { useReveal } from '../hooks/useReveal'
-import bananaimg from '../assets/Bnan22.jpg'
+import bananaimg from '../assets/home-banana.jpg'
 
 const NEEDS = [
   'A reliable and trustworthy supplier',

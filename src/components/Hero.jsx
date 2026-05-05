@@ -135,15 +135,92 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* MOUSE SCROLL INDICATOR */}
+      <div
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+        style={{
+          position: 'absolute',
+          bottom: 32,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 10,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 8,
+          cursor: 'pointer',
+          opacity: scrolled ? 0 : 1,
+          transition: 'opacity 0.4s ease',
+          animation: 'mouseFloat 2.4s ease-in-out infinite',
+        }}
+      >
+        {/* SCROLL label */}
+        <span style={{
+          fontSize: 9,
+          fontWeight: 700,
+          letterSpacing: '0.22em',
+          textTransform: 'uppercase',
+          color: 'rgba(255,255,255,0.55)',
+        }}>Scroll</span>
+
+        {/* Mouse body */}
+        <div style={{
+          width: 26,
+          height: 42,
+          border: '2px solid rgba(255,255,255,0.6)',
+          borderRadius: 13,
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: 6,
+          position: 'relative',
+          boxShadow: '0 0 12px rgba(255,255,255,0.15)',
+        }}>
+          {/* Scroll dot inside mouse */}
+          <div style={{
+            width: 4,
+            height: 8,
+            background: 'rgba(255,255,255,0.9)',
+            borderRadius: 2,
+            animation: 'mouseDot 1.8s ease-in-out infinite',
+          }} />
+          {/* Left button line */}
+          <div style={{
+            position: 'absolute',
+            top: 0, left: '50%',
+            width: 1,
+            height: 14,
+            background: 'rgba(255,255,255,0.25)',
+            transform: 'translateX(-50%)',
+          }} />
+        </div>
+
+        {/* Animated chevrons */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+          {[0, 1, 2].map(i => (
+            <svg key={i} width="12" height="7" viewBox="0 0 12 7" fill="none"
+              style={{ animation: `chevronSeq 1.8s ease-in-out ${i * 0.2}s infinite` }}>
+              <path d="M1 1l5 5 5-5" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5"
+                strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ))}
+        </div>
+      </div>
+
       {/* RESPONSIVE */}
       <style>{`
-        @keyframes scrollDot {
-          0%,100% { transform: translateY(0); opacity: 1; }
-          50%      { transform: translateY(10px); opacity: 0.3; }
+        @keyframes mouseFloat {
+          0%,100% { transform: translateX(-50%) translateY(0); }
+          50%      { transform: translateX(-50%) translateY(6px); }
         }
-        @keyframes chevronFade {
-          0%,100% { transform: translateY(0); opacity: 0.6; }
-          50%      { transform: translateY(4px); opacity: 0.2; }
+        @keyframes mouseDot {
+          0%     { transform: translateY(0); opacity: 1; }
+          60%    { transform: translateY(10px); opacity: 0; }
+          61%    { transform: translateY(0); opacity: 0; }
+          100%   { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes chevronSeq {
+          0%,100% { opacity: 0.2; }
+          50%     { opacity: 1; }
         }
         @media (max-width: 680px) {
           #home-logo  { left: 16px !important; bottom: 120px !important; }

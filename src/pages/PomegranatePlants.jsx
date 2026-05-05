@@ -86,6 +86,7 @@ export default function PomegranatePlants() {
   const r3 = usePageReveal()
   const r4 = usePageReveal()
   const r5 = usePageReveal()
+
 /* Reusable Card Component */
 const Card = ({ v }) => (
     <div
@@ -154,7 +155,8 @@ const Card = ({ v }) => (
         </p>
       </div>
     </div>
-  );
+  )
+
   return (
     <>
       <Navbar />
@@ -258,6 +260,7 @@ const Card = ({ v }) => (
         gap: 'var(--sp-6)',
         marginBottom: 'var(--sp-6)',
       }}
+      className="pome-var-grid-3"
     >
       {VARIETIES.slice(0, 3).map((v, i) => (
         <div key={v.name} className={`reveal delay-${i + 1}`}>
@@ -270,11 +273,12 @@ const Card = ({ v }) => (
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)', // ✅ 50-50
+        gridTemplateColumns: 'repeat(2, 1fr)',
         gap: 'var(--sp-6)',
         maxWidth: '800px',
-        margin: '0 auto', // center row
+        margin: '0 auto',
       }}
+      className="pome-var-grid-2"
     >
       {VARIETIES.slice(3, 5).map((v, i) => (
         <div key={v.name} className={`reveal delay-${i + 4}`}>
@@ -366,6 +370,16 @@ const Card = ({ v }) => (
          <CTABanner />
       </main>
       <Footer />
+      <style>{`
+        @media(max-width:820px){
+          .pome-var-grid-3{ grid-template-columns:1fr 1fr !important; }
+          .pome-var-grid-2{ grid-template-columns:1fr 1fr !important; max-width:100% !important; }
+        }
+        @media(max-width:560px){
+          .pome-var-grid-3{ grid-template-columns:1fr !important; }
+          .pome-var-grid-2{ grid-template-columns:1fr !important; }
+        }
+      `}</style>
     </>
   )
 }

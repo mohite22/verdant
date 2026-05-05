@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import logo from '../assets/logo-1.png'
 
@@ -53,6 +53,15 @@ export default function Navbar() {
   const [scrolled,   setScrolled]   = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDrop,   setOpenDrop]   = useState(null)
+  const dropTimer = useRef(null)
+
+  const handleDropEnter = (label) => {
+    clearTimeout(dropTimer.current)
+    setOpenDrop(label)
+  }
+  const handleDropLeave = () => {
+    dropTimer.current = setTimeout(() => setOpenDrop(null), 150)
+  }
   const [activeHash, setActiveHash] = useState(window.location.hash || '#/')
 
   useEffect(() => {
@@ -134,8 +143,8 @@ export default function Navbar() {
           <ul style={{ display: 'flex', alignItems: 'center', gap: 2, listStyle: 'none' }}>
             {NAV_ITEMS.map(item => (
               <li key={item.label} className="nav-item" style={{ position: 'relative' }}
-                onMouseEnter={() => item.dropdown && setOpenDrop(item.label)}
-                onMouseLeave={() => setOpenDrop(null)}>
+                onMouseEnter={() => item.dropdown && handleDropEnter(item.label)}
+                onMouseLeave={handleDropLeave}>
                 <a href={item.hash} onClick={e => goTo(item.hash, e)}
                   className={`btn-nav${isActive(item) ? ' active' : ''}`}
                   style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -143,7 +152,10 @@ export default function Navbar() {
                   {item.dropdown && <Caret />}
                 </a>
                 {item.dropdown && openDrop === item.label && (
-                  <div className="nav-dropdown" style={{ display: 'flex' }}>
+                  <div className="nav-dropdown"
+                    style={{ display: 'flex' }}
+                    onMouseEnter={() => clearTimeout(dropTimer.current)}
+                    onMouseLeave={handleDropLeave}>
                     {item.dropdown.map(sub => (
                       <a key={sub.label} href={sub.hash} onClick={e => goTo(sub.hash, e)} className="drop-link">{sub.label}</a>
                     ))}

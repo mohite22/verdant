@@ -3,11 +3,14 @@ import Footer from '../components/Footer'
 import PageHero from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
 import CTABanner from '../components/CTABanner'
+import scIntroImg from '../assets/IMG_4059.jpg'
+import nurseryimg from '../assets/IMG_4060.jpg'
+import bannerimg from '../assets/IMG_4061.jpg'
 
 /* ── Sugarcane images (Unsplash) ── */
-const IMG_HERO    = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80'
-const IMG_INTRO   = 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80'
-const IMG_NURSERY = 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80'
+const IMG_HERO    = bannerimg
+const IMG_INTRO   = scIntroImg
+const IMG_NURSERY = nurseryimg
 const IMG_FIELD   = 'https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?w=800&q=80'
 
 /* ── Data ── */
