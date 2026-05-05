@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import video from '../assets/videos/verdantmovie.mp4' // ✅ ADD YOUR VIDEO
+import video from '../assets/videos/homehero.mp4' // ✅ ADD YOUR VIDEO
 import logo from '../assets/logo-1.png'
 /* ── Du Roi SVG Logo Mark — shared between Hero & Navbar ── */
 function LogoMark({ size = 115 }) {
@@ -127,20 +127,30 @@ export default function Hero() {
             lineHeight: 1.45,
             marginBottom: 8,
           }}>
-            "What you plant now, you will harvest later"
+            "वृक्षाणां कदली श्रेष्ठा उपयोगे सर्वदा स्थिता ।"
           </p>
-          <p className="body-text-sm" style={{ color: '#4a5f4e' }}>
+          {/* <p className="body-text-sm" style={{ color: '#4a5f4e' }}>
             – Og Mandino
-          </p>
+          </p> */}
         </div>
       </div>
 
       {/* RESPONSIVE */}
       <style>{`
+        @keyframes scrollDot {
+          0%,100% { transform: translateY(0); opacity: 1; }
+          50%      { transform: translateY(10px); opacity: 0.3; }
+        }
+        @keyframes chevronFade {
+          0%,100% { transform: translateY(0); opacity: 0.6; }
+          50%      { transform: translateY(4px); opacity: 0.2; }
+        }
         @media (max-width: 680px) {
-          #home-logo { left: 18px !important; bottom: 32px !important; }
-          #home-quote { right: 16px !important; bottom: 32px !important;
-                        max-width: calc(100vw - 160px) !important; }
+          #home-logo  { left: 16px !important; bottom: 120px !important; }
+          #home-quote { right: 12px !important; left: 12px !important; bottom: 20px !important; max-width: 100% !important; }
+        }
+        @media (max-width: 440px) {
+          #home-logo  { left: 12px !important; bottom: 130px !important; }
         }
       `}</style>
     </section>

@@ -73,8 +73,8 @@ export default function Footer() {
               <a href="mailto:head-marketing@verdantbioagri.com" className="footer-link">
               head-marketing@verdantbioagri.com
               </a>
-              <a href="tel:+91 9945356478" className="footer-link">
-              +91 9945356478 
+              <a href="tel:+91 7507135999" className="footer-link">
+              +91 7507135999
               </a>
             </div>
 

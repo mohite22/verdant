@@ -4,6 +4,7 @@ import Footer from './Footer'
 import bananaimg1 from '../assets/GrandeNain02.jpg'
 import bananaimg2 from '../assets/yellkibanana.jpg'
 import bananaimg3 from '../assets/banan23.jpeg'
+import bannervideo from '../assets/videos/homehero.mp4' // ✅ ADD YOUR VIDEO
 
 /* ─── Shared scroll-reveal hook ─── */
 function useReveal(threshold = 0.1) {
@@ -140,17 +141,15 @@ function PageHero() {
   return (
     <section style={{
       position: 'relative', width: '100%',
-      height: 480, minHeight: 380,
+      height: 'clamp(260px,45vw,480px)', minHeight: 260,
       overflow: 'hidden',
       display: 'flex', alignItems: 'center',
     }}>
-      {/* BG */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: "url('https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg')",
-        backgroundSize: 'cover', backgroundPosition: 'center 30%',
-        animation: 'heroZoom 22s ease-in-out infinite alternate', zIndex: 0,
-      }} />
+      {/* BG Video */}
+      <video autoPlay muted loop playsInline
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
+        <source src={bannervideo} type="video/mp4" />
+      </video>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(110deg, rgba(15,40,20,0.82) 0%, rgba(25,60,30,0.55) 60%, rgba(15,40,20,0.45) 100%)', zIndex: 1 }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
@@ -229,14 +228,14 @@ function TissueIntro() {
               src={bananaimg3}
               alt="Banana tissue culture plant with roots"
               style={{
-                width: '100%', height: 460,
+                width: '100%', height: 'clamp(240px,40vw,460px)',
                 objectFit: 'cover', borderRadius: 'var(--radius-lg)',
                 display: 'block', boxShadow: 'var(--shadow-lg)',
               }}
             />
             {/* Floating stat card */}
             <div style={{
-              position: 'absolute', bottom: 24, left: -24,
+              position: 'absolute', bottom: 16, left: 16,
               background: '#fff', borderRadius: 'var(--radius-md)',
               padding: '18px 24px', boxShadow: 'var(--shadow-lg)',
               border: '1px solid rgba(43,140,62,0.15)',
@@ -320,8 +319,8 @@ function PlantStages() {
       </div>
       <style>{`
         .stage-card:hover{ box-shadow:var(--shadow-md) !important; transform:translateY(-4px) !important; }
-        @media(max-width:820px){ .stages-grid{ grid-template-columns:1fr !important; } }
-        @media(max-width:600px){ .stages-grid{ grid-template-columns:1fr !important; } }
+        @media(max-width:820px){ .stages-grid{ grid-template-columns:1fr 1fr !important; } }
+        @media(max-width:560px){ .stages-grid{ grid-template-columns:1fr !important; } }
       `}</style>
     </section>
   )
@@ -369,7 +368,7 @@ function VarietiesSection() {
                 onMouseLeave={() => setActiveVar(null)}
               >
                 {/* Image */}
-                <div style={{ position: 'relative', overflow: 'hidden', height: 200 }}>
+                <div style={{ position: 'relative', overflow: 'hidden', height: 'clamp(180px,30vw,400px)' }}>
                   <img
                     src={v.img} alt={v.name}
                     style={{
@@ -506,23 +505,9 @@ function WhyTCPlants() {
               <img
                 src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg"
                 alt="Du Roi laboratory banana plants"
-                style={{ width: '100%', height: 480, objectFit: 'cover', display: 'block' }}
+                style={{ width: '100%', height: 'clamp(240px,40vw,480px)', objectFit: 'cover', display: 'block' }}
               />
-              {/* ISO overlay badge */}
-              <div style={{
-                position: 'absolute', bottom: 20, right: 20,
-                background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(8px)',
-                borderRadius: 'var(--radius-md)', padding: '16px 20px',
-                boxShadow: 'var(--shadow-md)', textAlign: 'center',
-              }}>
-                <img
-                  src="https://duroilab.co.za/wp-content/uploads/2024/11/sgs-logo-9001-iso-zertifikat_817_2-3995511386-scaled-1.jpg"
-                  alt="ISO 9001"
-                  style={{ width: 100, height: 'auto', margin: '0 auto 8px' }}
-                  onError={e => { e.currentTarget.style.display = 'none' }}
-                />
-                <p style={{ fontSize: 10, fontWeight: 600, color: 'var(--clr-green-mid)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Certified Since 2011</p>
-              </div>
+              
             </div>
           </div>
 
@@ -575,34 +560,6 @@ function WhyTCPlants() {
   )
 }
 
-/* ── ISO Certification Strip ── */
-function IsoCertStrip() {
-  const ref = useReveal()
-  return (
-    <section style={{ background: 'var(--clr-offwhite)', padding: 'var(--sp-12) 0', borderTop: '1px solid var(--clr-border-light)' }} ref={ref}>
-      <div className="container">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-10)', flexWrap: 'wrap' }} className="reveal">
-          <img
-            src="https://duroilab.co.za/wp-content/uploads/2024/11/sgs-logo-9001-iso-zertifikat_817_2-3995511386-scaled-1.jpg"
-            alt="ISO 9001 SGS Certification"
-            style={{ height: 100, width: 'auto', objectFit: 'contain', flexShrink: 0 }}
-            onError={e => { e.currentTarget.style.display = 'none' }}
-          />
-          <div>
-            <h3 style={{ fontFamily: 'var(--font-cursive)', fontSize: 28, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>
-              ISO 9001 Certified
-            </h3>
-            <p style={{ fontSize: 15, color: 'var(--clr-text-mid)', lineHeight: 1.75, maxWidth: 620 }}>
-              <strong>Du Roi Laboratory</strong> was granted an ISO 9001 certification for the management
-              system for the production of banana tissue culture plants in February 2011 — becoming one of
-              the first laboratories of its kind in Africa to achieve this internationally recognised standard.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
 
 /* ── CTA Banner ── */
 function CTABanner() {
@@ -706,7 +663,6 @@ export default function BananaPlants() {
         <VarietiesSection />
         <ProductionProcess />
         <WhyTCPlants />
-        <IsoCertStrip />
         <CTABanner />
       </main>
       <Footer />

@@ -25,8 +25,7 @@ const SUBJECTS = [
 ]
 
 const HOURS = [
-  ['Monday – Friday', '07:00 – 17:00', false],
-  ['Saturday',        '08:00 – 12:00', false],
+  ['Monday – Saturday', '08 AM – 06 PM', false],
   ['Sunday',          'Closed',         true],
 ]
 
@@ -235,7 +234,7 @@ export default function Contact() {
 
         <h3 style={{
           fontSize: 16,
-          fontWeight: 700,
+          fontWeight: 500,
           color: 'var(--clr-green-dark)',
           marginTop: 8
         }}>
@@ -269,7 +268,7 @@ export default function Contact() {
 
         <h3 style={{
           fontSize: 16,
-          fontWeight: 700,
+          fontWeight: 500,
           color: 'var(--clr-green-dark)',
           marginTop: 8
         }}>
@@ -290,7 +289,7 @@ export default function Contact() {
           <div className="container">
             
             <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr',
-              gap: 64, alignItems: 'flex-start' }} className="contact-grid">
+              gap: 48, alignItems: 'flex-start' }} className="contact-grid">
 
               {/* Form */}
               <div className="reveal-left">
@@ -382,7 +381,7 @@ export default function Contact() {
                   boxShadow: 'var(--shadow-lg)', height: 260 }}>
                   <iframe
     title="Verdant BioAgri Location"
-    src="https://www.google.com/maps?q=18.9330912,72.8270691&z=16&output=embed"
+    src="https://www.google.com/maps?q=Verdant+Agro-Horti+LLP&output=embed"
     width="100%"
     height="100%"
     style={{ border: 0 }}
@@ -437,7 +436,17 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <style>{`@media(max-width:820px){.contact-grid{grid-template-columns:1fr!important;gap:40px!important}}`}</style>
+          <style>{`
+            @media(max-width:820px){ .contact-grid{ grid-template-columns:1fr !important; gap:32px !important; } }
+            @media(max-width:600px){
+              .form-row{ grid-template-columns:1fr !important; }
+              .span-2{ grid-column:span 1 !important; }
+              .pg-grid-4{ grid-template-columns:1fr 1fr !important; }
+            }
+            @media(max-width:440px){
+              .pg-grid-4{ grid-template-columns:1fr !important; }
+            }
+          `}</style>
         </section>
       </main>
       <Footer />

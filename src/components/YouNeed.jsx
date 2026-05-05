@@ -52,7 +52,7 @@ export default function YouNeed() {
                           src={bananaimg}
                           alt="Banana tissue culture plant with roots"
                           style={{
-                            width: '100%', height: 460,
+                            width: '100%', height: 'clamp(240px,40vw,460px)',
                             objectFit: 'cover', borderRadius: 'var(--radius-lg)',
                             display: 'block', boxShadow: 'var(--shadow-lg)',
                           }}

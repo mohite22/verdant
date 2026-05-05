@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function PageHero({ title, subtitle, breadcrumb, bgImage, badge }) {
+export default function PageHero({ title, subtitle, breadcrumb, bgImage, bgVideo, badge }) {
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 80)
@@ -17,15 +17,24 @@ export default function PageHero({ title, subtitle, breadcrumb, bgImage, badge }
   return (
     <section style={{
       position: 'relative', width: '100%',
-      height: 420, minHeight: 320,
+      height: 'clamp(260px,45vw,420px)', minHeight: 260,
       overflow: 'hidden', display: 'flex', alignItems: 'center',
     }}>
-      <div style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: `url('${bg}')`,
-        backgroundSize: 'cover', backgroundPosition: 'center 35%',
-        animation: 'heroZoom 22s ease-in-out infinite alternate', zIndex: 0,
-      }} />
+      {bgVideo ? (
+        <video autoPlay muted loop playsInline style={{
+          position: 'absolute', inset: 0, width: '100%', height: '100%',
+          objectFit: 'cover', zIndex: 0,
+        }}>
+          <source src={bgVideo} type="video/mp4" />
+        </video>
+      ) : (
+        <div style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: `url('${bg}')`,
+          backgroundSize: 'cover', backgroundPosition: 'center 35%',
+          animation: 'heroZoom 22s ease-in-out infinite alternate', zIndex: 0,
+        }} />
+      )}
       <div style={{
         position: 'absolute', inset: 0,
         background: 'linear-gradient(110deg,rgba(10,28,14,.86) 0%,rgba(22,55,28,.60) 55%,rgba(10,28,14,.50) 100%)',

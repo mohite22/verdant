@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
 import pomeimg1 from '../assets/pomePM-400x700.jpeg'
 import CTABanner from '../components/CTABanner'
+import pomovideo from '../assets/videos/pomovideo.mp4'
 
 const FACTS = [
   { label: 'Plant Type',       value: 'Tissue Culture' },
@@ -161,7 +162,8 @@ const Card = ({ v }) => (
         <PageHero
           title="Tissue Culture Pomegranate Plants"
           subtitle="Embark on a journey of excellence with Bhagva pomegranate variety, representing the pinnacle of cultivation."
-          badge={{ icon: '🌱', text: 'ISO 9001 Certified Production' }}
+          
+          bgVideo={pomovideo}
         />
 
         {/* ── Overview ── */}
@@ -188,7 +190,7 @@ const Card = ({ v }) => (
                   src={pomeimg1}
                   alt="Pomegranate fruit on tree"
                   style={{
-                    width: '100%', height: 460, objectFit: 'cover',
+                    width: '100%', height: 'clamp(240px,40vw,460px)', objectFit: 'cover',
                     borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', display: 'block',
                   }}
                 />

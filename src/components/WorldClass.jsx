@@ -8,7 +8,7 @@ export default function WorldClass() {
       style={{
         position: 'relative',
         width: '100%',
-        height: 280,
+        height: 'clamp(160px,28vw,280px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

@@ -55,7 +55,7 @@ export default function CSI() {
               <div className="reveal-right">
                 <img src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg"
                   alt="Community"
-                  style={{ width: '100%', height: 460, objectFit: 'cover',
+                  style={{ width: '100%', height: 'clamp(240px,40vw,460px)', objectFit: 'cover',
                     borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', display: 'block' }} />
               </div>
             </div>
@@ -74,9 +74,10 @@ export default function CSI() {
               {INITIATIVES.map((item, i) => (
                 <div key={i} className={`reveal delay-${i + 1}`}>
                   <div style={{ background: '#fff', borderRadius: 'var(--radius-xl)',
-                    padding: '36px 32px', boxShadow: 'var(--shadow-sm)',
+                    padding: '28px 24px', boxShadow: 'var(--shadow-sm)',
                     border: '1px solid var(--clr-border)',
-                    display: 'flex', gap: 24, alignItems: 'flex-start',
+                    display: 'flex', gap: 20, alignItems: 'flex-start',
+                    flexWrap: 'wrap',
                     transition: 'all var(--tr-slow)' }}
                     onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--shadow-md)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
                     onMouseLeave={e => { e.currentTarget.style.boxShadow = 'var(--shadow-sm)'; e.currentTarget.style.transform = 'none' }}>

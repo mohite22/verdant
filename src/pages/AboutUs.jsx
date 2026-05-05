@@ -3,6 +3,7 @@ import Footer    from '../components/Footer'
 import PageHero  from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
 import CTABanner from "../components/CTABanner"; // Corrected path
+import mailicon from '../assets/aboutus-imag.jpg'
 const STRENGTHS = [
   { icon: '🔬', title: 'Advanced Laboratory Facilities',
     desc: 'Among the most advanced tissue culture facilities in India. ' },
@@ -73,13 +74,13 @@ export default function AboutUs() {
 
               <div className="reveal-right" style={{ position: 'relative' }}>
                 <img
-                  src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg"
+                  src={mailicon}
                   alt="Du Roi Laboratory"
-                  style={{ width: '100%', height: 480, objectFit: 'cover',
+                  style={{ width: '100%', height: 'clamp(240px,40vw,480px)', objectFit: 'cover',
                     borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)', display: 'block' }}
                 />
                 <div style={{
-                  position: 'absolute', bottom: 24, left: -20,
+                  position: 'absolute', bottom: 16, left: 16,
                   background: '#fff', borderRadius: 'var(--radius-md)',
                   padding: '18px 24px', boxShadow: 'var(--shadow-lg)',
                   border: '1px solid rgba(43,140,62,.15)',
