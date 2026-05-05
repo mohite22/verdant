@@ -2,7 +2,7 @@
 const SOCIALS = [
   {
     name: 'Facebook',
-    url:  'https://www.facebook.com/DuRoiGroup',
+    url:  '#',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
@@ -11,7 +11,7 @@ const SOCIALS = [
   },
   {
     name: 'Instagram',
-    url:  'https://www.instagram.com/duroigroup/',
+    url:  '#',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
            strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
@@ -23,7 +23,7 @@ const SOCIALS = [
   },
   {
     name: 'YouTube',
-    url:  'https://www.youtube.com/@DuRoiGroup',
+    url:  '#',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
         <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
@@ -33,7 +33,7 @@ const SOCIALS = [
   },
   {
     name: 'WhatsApp',
-    url:  'https://wa.me/27764306830',
+    url:  '#',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
@@ -42,7 +42,7 @@ const SOCIALS = [
   },
   {
     name: 'LinkedIn',
-    url:  'https://www.linkedin.com/company/du-roi-group/',
+    url:  '#',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
@@ -70,11 +70,11 @@ export default function Footer() {
 
             {/* Contact links */}
             <div className="footer-contact-col">
-              <a href="mailto:info@duroilab.co.za" className="footer-link">
-                info@duroilab.co.za
+              <a href="mailto:head-marketing@verdantbioagri.com" className="footer-link">
+              head-marketing@verdantbioagri.com
               </a>
-              <a href="tel:+27153451217" className="footer-link">
-                +27 15 345 1217
+              <a href="tel:+91 7507135999" className="footer-link">
+              +91 7507135999
               </a>
             </div>
 
@@ -103,11 +103,11 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="container">
           <div className="footer-bottom-inner">
-            <p className="footer-copyright">© Copyright – Du Roi Laboratory</p>
+            <p className="footer-copyright">© Copyright – Verdant Bio Agri LLP</p>
 
             <div className="footer-bottom-links">
               <a
-                href="https://citrusgin.co.za/wp-content/uploads/2021/06/ANB_Protection-of-Personal-Information-Policy_2021-1.pdf"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-bottom-link"
@@ -116,7 +116,7 @@ export default function Footer() {
               </a>
               <span className="footer-sep">|</span>
               <a
-                href="https://www.tinygiantstudios.co.za/"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-bottom-link"

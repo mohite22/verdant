@@ -1,13 +1,11 @@
 import { useReveal } from '../hooks/useReveal'
 
 const REASONS = [
-  'More than 30 years of experience in tissue culture',
-  'A quality product which is the result of proven research and development trials',
-  'World renowned technical expertise',
-  'Established international markets',
-  'ISO 9001 certification for the management system for the production of banana tissue culture plants',
-  'Export support',
-  'Technical support',
+  'Quality products backed by proven research and development trials',
+  'Renowned technical expertise',
+  'Proven experience in exporting tissue culture seedlings',
+  'DBT-certified tissue culture laboratory',
+  'Hardening centers across Gujarat, Maharashtra, and Karnataka',
 ]
 
 /* Red checkbox SVG — reusable inline component */

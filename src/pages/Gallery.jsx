@@ -2,32 +2,91 @@ import { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import PageHero from '../components/PageHero'
-import usePageReveal from '../hooks/usePageReveal'
+import bnvimg1 from '../assets/bnv1.jpg'
+import bnvimg2 from '../assets/bnv2.jpg'
+import bnvimg3 from '../assets/bnv3.jpg'
+import pnvimg1 from '../assets/pnv1.jpg'
+import pnvimg2 from '../assets/pnv2.jpg'
+import pnvimg3 from '../assets/pnv3.jpeg'
+import scimg1  from '../assets/IMG_4058.jpg'
+import scimg2  from '../assets/IMG_4059.jpg'
+import scimg3  from '../assets/IMG_4060.jpg'
+import scimg4  from '../assets/IMG_4061.jpg'
+import bananaimg1 from '../assets/GrandeNain02.jpg'
+import bananaimg2 from '../assets/yellkibanana.jpg'
+import bananaimg3 from '../assets/banan23.jpeg'
+import bananaimg4 from '../assets/Bnan22.jpg'
+import aboutimg  from '../assets/aboutus-imag.jpg'
+import homebanana from '../assets/home-banana.jpg'
+import labimg1 from '../assets/lab/DSC02195.jpg'
+import labimg2 from '../assets/lab/DSC_1469.jpg'
+import labimg3 from '../assets/lab/DSC_1475.jpg'
+import labimg4 from '../assets/lab/DSC_1477.jpg'
+import labimg5 from '../assets/lab/DSC_1495.jpg'
+import labimg6 from '../assets/lab/DSC_1549.jpg'
+import labimg7 from '../assets/lab/DSC_1869.jpg'
+import sugimg1 from '../assets/pomegranate/IMG_3143.jpg'
+import sugimg2 from '../assets/pomegranate/IMG_3146.jpg'
+import sugimg3 from '../assets/pomegranate/IMG_3147.jpg'
+import sugimg4 from '../assets/pomegranate/IMG_3148.jpg'
+import sugimg5 from '../assets/pomegranate/IMG_3150.jpg'
+import sugimg6 from '../assets/pomegranate/IMG_3165.jpg'
+import sugimg7 from '../assets/pomegranate/IMG_3166.jpg'
+import sugimg8 from '../assets/pomegranate/IMG_3764.jpg'
 
-const CATS = ['All', 'Laboratory', 'Plants', 'Plantation', 'Export']
+const CATS = ['All', 'Banana', 'Pomegranate', 'Sugarcane', 'Laboratory']
 
 const PHOTOS = [
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg', cat: 'Plantation', caption: 'Banana nursery — Letsitele, Limpopo' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg',               cat: 'Plants',     caption: 'Tissue culture plant with healthy root system' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg',               cat: 'Plants',     caption: 'Elite selection plants in hardening nursery' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg', cat: 'Laboratory', caption: 'Laminar flow bench work in sterile conditions' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg',               cat: 'Export',     caption: 'In vitro plants prepared for air freight export' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg',               cat: 'Plantation', caption: 'Field-ready plants at the 20 cm stage' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg', cat: 'Laboratory', caption: 'Controlled growth rooms — 10 rooms on-site' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg',               cat: 'Plants',     caption: 'Williams variety from the elite foundation block' },
-  { src: 'https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg',               cat: 'Export',     caption: 'Phytosanitary inspection before international shipment' },
+  { src: bnvimg1,    cat: 'Banana',       caption: 'Banana nursery — healthy plants in the field' },
+  { src: bnvimg2,    cat: 'Banana',       caption: 'Banana plants ready for field planting' },
+  { src: bnvimg3,    cat: 'Banana',       caption: 'Banana plantation — uniform crop stand' },
+  { src: bananaimg1, cat: 'Banana',       caption: 'Grand Nain variety — tissue culture banana' },
+  { src: bananaimg2, cat: 'Banana',       caption: 'Yelakki banana variety — Elachi banana' },
+  { src: bananaimg3, cat: 'Banana',       caption: 'Banana tissue culture plants with roots' },
+  { src: bananaimg4, cat: 'Banana',       caption: 'Banana plants at nursery stage' },
+  { src: homebanana, cat: 'Banana',       caption: 'Tissue culture banana — field ready' },
+  { src: pnvimg1,    cat: 'Pomegranate',  caption: 'Pomegranate tissue culture plant' },
+  { src: pnvimg2,    cat: 'Pomegranate',  caption: 'Pomegranate plants in hardening nursery' },
+  { src: pnvimg3,    cat: 'Pomegranate',  caption: 'Field-ready pomegranate plants' },
+  { src: scimg1,     cat: 'Sugarcane',    caption: 'Sugarcane single eye bud seedlings' },
+  { src: scimg2,     cat: 'Sugarcane',    caption: 'Sugarcane nursery tray seedlings' },
+  { src: scimg3,     cat: 'Sugarcane',    caption: 'Sugarcane seedlings — 30 days growth' },
+  { src: scimg4,     cat: 'Sugarcane',    caption: 'Sugarcane field transplantation' },
+  { src: sugimg1,    cat: 'Pomegranate',  caption: 'Pomegranate plants in the field' },
+  { src: sugimg2,    cat: 'Pomegranate',  caption: 'Pomegranate nursery seedlings' },
+  { src: sugimg3,    cat: 'Pomegranate',  caption: 'Pomegranate plants — controlled conditions' },
+  { src: sugimg4,    cat: 'Pomegranate',  caption: 'Pomegranate tissue culture plants' },
+  { src: sugimg5,    cat: 'Pomegranate',  caption: 'Pomegranate seedlings ready for field' },
+  { src: sugimg6,    cat: 'Pomegranate',  caption: 'Pomegranate plantation — uniform stand' },
+  { src: sugimg7,    cat: 'Pomegranate',  caption: 'Pomegranate crop — healthy growth' },
+  { src: sugimg8,    cat: 'Pomegranate',  caption: 'Pomegranate field — tissue culture derived' },
+  { src: aboutimg,   cat: 'Laboratory',   caption: 'Verdant BioAgri tissue culture laboratory' },
+  { src: labimg1,    cat: 'Laboratory',   caption: 'Laboratory — tissue culture facility' },
+  { src: labimg2,    cat: 'Laboratory',   caption: 'Sterile laminar flow bench operations' },
+  { src: labimg3,    cat: 'Laboratory',   caption: 'Meristem extraction under sterile conditions' },
+  { src: labimg4,    cat: 'Laboratory',   caption: 'Tissue culture multiplication stage' },
+  { src: labimg5,    cat: 'Laboratory',   caption: 'Controlled growth room — plant multiplication' },
+  { src: labimg6,    cat: 'Laboratory',   caption: 'Weaning greenhouse — primary hardening' },
+  { src: labimg7,    cat: 'Laboratory',   caption: 'Laboratory technicians at work' },
 ]
 
 export default function Gallery() {
   const [filter,   setFilter]   = useState('All')
-  const [lightbox, setLightbox] = useState(null)
+  const [lightboxIdx, setLightboxIdx] = useState(null)
   const [hovIdx,   setHovIdx]   = useState(null)
-  const ref = usePageReveal(0.06)
 
   const filtered = filter === 'All' ? PHOTOS : PHOTOS.filter(p => p.cat === filter)
+  const lightbox = lightboxIdx !== null ? filtered[lightboxIdx] : null
+
+  const prev = () => setLightboxIdx(i => (i - 1 + filtered.length) % filtered.length)
+  const next = () => setLightboxIdx(i => (i + 1) % filtered.length)
 
   useEffect(() => {
-    const fn = e => { if (e.key === 'Escape') setLightbox(null) }
+    const fn = e => {
+      if (e.key === 'Escape') setLightboxIdx(null)
+      if (e.key === 'ArrowRight') setLightboxIdx(i => i !== null ? (i + 1) % filtered.length : null)
+      if (e.key === 'ArrowLeft')  setLightboxIdx(i => i !== null ? (i - 1 + filtered.length) % filtered.length : null)
+    }
     window.addEventListener('keydown', fn)
     return () => window.removeEventListener('keydown', fn)
   }, [])
@@ -42,12 +101,12 @@ export default function Gallery() {
           bgImage="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg"
         />
 
-        <section className="section-pad" ref={ref}>
+        <section className="section-pad">
           <div className="container">
 
             {/* Filter tabs */}
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap',
-              marginBottom: 56, justifyContent: 'center' }} className="reveal">
+              marginBottom: 56, justifyContent: 'center' }}>
               {CATS.map(cat => (
                 <button key={cat} onClick={() => setFilter(cat)} style={{
                   padding: '9px 22px', borderRadius: 'var(--radius-pill)',
@@ -67,14 +126,13 @@ export default function Gallery() {
               className="gallery-grid">
               {filtered.map((p, i) => (
                 <div key={`${filter}-${i}`}
-                  className={`reveal delay-${(i % 6) + 1}`}
-                  onClick={() => setLightbox(p)}
+                  onClick={() => setLightboxIdx(i)}
                   onMouseEnter={() => setHovIdx(i)}
                   onMouseLeave={() => setHovIdx(null)}
                   style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden',
                     cursor: 'pointer', position: 'relative',
                     aspectRatio: '4/3', boxShadow: 'var(--shadow-sm)' }}>
-                  <img src={p.src} alt={p.caption}
+                  <img src={p.src} alt={p.caption} loading="lazy"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block',
                       transform: hovIdx === i ? 'scale(1.06)' : 'scale(1)',
                       transition: 'transform .5s ease' }} />
@@ -118,21 +176,52 @@ export default function Gallery() {
 
         {/* Lightbox */}
         {lightbox && (
-          <div onClick={() => setLightbox(null)}
-            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.90)',
+          <div onClick={() => setLightboxIdx(null)}
+            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.92)',
               zIndex: 99999, display: 'flex', alignItems: 'center',
-              justifyContent: 'center', padding: 24 }}>
+              justifyContent: 'center', padding: '24px 80px' }}>
+
+            {/* Prev arrow */}
+            <button onClick={e => { e.stopPropagation(); prev() }}
+              style={{ position: 'fixed', left: 16, top: '50%', transform: 'translateY(-50%)',
+                background: 'rgba(255,255,255,.15)', border: '1px solid rgba(255,255,255,.3)',
+                borderRadius: '50%', width: 48, height: 48, cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#fff', fontSize: 22, transition: 'background .2s', zIndex: 100000 }}
+              onMouseOver={e => e.currentTarget.style.background = 'rgba(255,255,255,.30)'}
+              onMouseOut={e  => e.currentTarget.style.background = 'rgba(255,255,255,.15)'}>
+              ‹
+            </button>
+
+            {/* Next arrow */}
+            <button onClick={e => { e.stopPropagation(); next() }}
+              style={{ position: 'fixed', right: 16, top: '50%', transform: 'translateY(-50%)',
+                background: 'rgba(255,255,255,.15)', border: '1px solid rgba(255,255,255,.3)',
+                borderRadius: '50%', width: 48, height: 48, cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#fff', fontSize: 22, transition: 'background .2s', zIndex: 100000 }}
+              onMouseOver={e => e.currentTarget.style.background = 'rgba(255,255,255,.30)'}
+              onMouseOut={e  => e.currentTarget.style.background = 'rgba(255,255,255,.15)'}>
+              ›
+            </button>
+
             <div onClick={e => e.stopPropagation()}
               style={{ position: 'relative', maxWidth: 900, width: '100%' }}>
-              <button onClick={() => setLightbox(null)}
+              {/* Close */}
+              <button onClick={() => setLightboxIdx(null)}
                 style={{ position: 'absolute', top: -48, right: 0, background: 'none',
                   border: 'none', color: '#fff', fontSize: 30, cursor: 'pointer',
                   lineHeight: 1, padding: 4 }}>✕</button>
               <img src={lightbox.src} alt={lightbox.caption}
                 style={{ width: '100%', borderRadius: 'var(--radius-lg)', display: 'block',
                   boxShadow: '0 20px 60px rgba(0,0,0,.5)' }} />
+              {/* Counter */}
+              <p style={{ color: 'rgba(255,255,255,.5)', fontSize: 11, marginTop: 8,
+                textAlign: 'center', letterSpacing: '.1em' }}>
+                {lightboxIdx + 1} / {filtered.length}
+              </p>
               <p style={{ color: 'rgba(255,255,255,.68)', fontSize: 13,
-                marginTop: 14, textAlign: 'center' }}>{lightbox.caption}</p>
+                marginTop: 4, textAlign: 'center' }}>{lightbox.caption}</p>
             </div>
           </div>
         )}

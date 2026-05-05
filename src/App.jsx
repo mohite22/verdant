@@ -20,6 +20,8 @@ import Formosana         from './pages/Formosana'
 import Gallery           from './pages/Gallery'
 import Contact           from './pages/Contact'
 import MediaPublications from './pages/MediaPublications'
+import PomegranatePlants from './pages/PomegranatePlants'
+import Sugarcane         from './pages/Sugarcane'
 
 const ROUTES = {
   '#/':                   'home',
@@ -29,6 +31,8 @@ const ROUTES = {
   '#/our-people':         'people',
   '#/csi':                'csi',
   '#/formosana':          'formosana',
+  '#/sugarcane-plants':  'sugarcane',
+  '#/pomegranate-plants': 'pomegranate',
   '#/media-publications': 'media',
   '#/gallery':            'gallery',
   '#/contact':            'contact',
@@ -50,7 +54,8 @@ function HomePage() {
         <WhyChooseUs />
         <WorldClass />
         <IsoSection />
-        <GroupLogos />
+        {/* <GroupLogos /> */}
+        
       </main>
       <Footer />
     </>
@@ -76,6 +81,8 @@ export default function App() {
     people:    <OurPeople />,
     csi:       <CSI />,
     formosana: <Formosana />,
+    sugarcane:   <Sugarcane />,
+    pomegranate: <PomegranatePlants />,
     media:     <MediaPublications />,
     gallery:   <Gallery />,
     contact:   <Contact />,

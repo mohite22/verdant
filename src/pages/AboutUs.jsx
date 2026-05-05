@@ -2,30 +2,24 @@ import Navbar    from '../components/Navbar'
 import Footer    from '../components/Footer'
 import PageHero  from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
-
+import CTABanner from "../components/CTABanner"; // Corrected path
+import mailicon from '../assets/aboutus-imag.jpg'
 const STRENGTHS = [
   { icon: '🔬', title: 'Advanced Laboratory Facilities',
-    desc: '28 laminar flow benches and 10 controlled growth rooms — among the most advanced tissue culture facilities on the continent.' },
-  { icon: '🏭', title: 'Fully Automated Weaning',
-    desc: 'State-of-the-art automated weaning greenhouses ensure consistent, high-quality plant establishment at scale.' },
-  { icon: '🌿', title: 'On-Site Nurseries',
-    desc: 'On-site nurseries harden plants for local markets, ensuring field-ready material that performs from day one.' },
+    desc: 'Among the most advanced tissue culture facilities in India. ' },
+  { icon: '🏭', title: 'Green House Facility',
+    desc: 'We have State-of-the-art Green House facility for acclimatization and growing of seedlings.' },
+  { icon: '🌿', title: 'Multi Location Nuseries',
+    desc: 'We have multi location nursery set ups for harden the seedlings and easy to carry for the farming community.' },
   { icon: '🌍', title: 'Global Export Capability',
-    desc: 'ISO-compliant phytosanitary processes enable seamless supply into 50+ countries across five continents.' },
+    desc: 'Phytosanitary processes enable seamless supply for export of seedlings.' },
   { icon: '👩‍🔬', title: 'Expert Technical Team',
     desc: 'Our professional team provides post-delivery technical support and farm consultation to every client worldwide.' },
-  { icon: '🏆', title: 'ISO 9001 Certified',
-    desc: 'ISO 9001 certified since 2011 — one of the first banana tissue culture labs in Africa to achieve this standard.' },
+  { icon: '🏆', title: 'DBT Certifications',
+    desc: 'Our tissue culture laboratory is certified by Department of Biotechnology, Ministry of Science and Technology, Government of India. ' },
 ]
 
-const TIMELINE = [
-  { year: '1989', event: 'Du Roi Nursery established in Letsitele, specialising in certified citrus cultivars.' },
-  { year: '1998', event: 'Du Roi Multiplant founded, expanding into micro-propagation of tropical fruit crops.' },
-  { year: '2007', event: 'Cederberg Tree Nursery established in Citrusdal, a greening-free citrus zone.' },
-  { year: '2011', event: 'Du Roi Laboratory receives ISO 9001 certification for banana tissue culture production.' },
-  { year: '2017', event: 'Halls and Du Roi Nursery combine expertise to launch premium avocado tree production.' },
-  { year: '2024', event: 'Du Roi Laboratory produces 10 million+ banana plants annually, exporting to 50+ countries.' },
-]
+
 
 function SectionTitle({ tag, title, italic, centre }) {
   return (
@@ -50,8 +44,9 @@ export default function AboutUs() {
       <main>
         <PageHero
           title="About Us"
-          subtitle="Southern Africa's leading tissue culture laboratory — built on science, driven by excellence, rooted in agriculture."
-          badge={{ icon: '🏆', text: 'ISO 9001 Certified Since 2011' }}
+           breadcrumb="About Us"
+          subtitle="Growing stronger farms, sustainably. Verdant bioAgri LLP, a proud part of the esteemed Kanoria Group, stands for trust, quality, and continuous innovation in agriculture. "
+          // badge={{ icon: '🏆', text: 'ISO 9001 Certified Since 2011' }}
         />
 
         {/* ── Who We Are ── */}
@@ -63,34 +58,29 @@ export default function AboutUs() {
                 <h2 className="page-h2">The Leading Banana <em className="page-em">Tissue Culture Lab</em></h2>
                 <div className="page-rule" />
                 <p className="pg-body">
-                  Du Roi Laboratory is Southern Africa's only banana tissue culture laboratory,
-                  supplying <strong>100% of South Africa's banana plant material</strong> and
-                  exporting to over 50 countries across Africa, the Middle East, the Indian Ocean
-                  islands and beyond.
+                Verdant bioAgri LLP, a proud part of the esteemed Kanoria Group, stands for trust, quality, and continuous innovation in agriculture. As a leading producer of premium tissue-cultured Banana, Pomegranate, Teak, and Ornamental plants, we are committed to delivering planting material that supports healthy growth, higher productivity, and long-term sustainability.
+                At Verdant bioAgri, we think like farmers. Our approach is rooted in understanding the real needs of growers and developing solutions that work in the field. Through advanced tissue culture technology and strict quality standards, we provide uniform, disease-free plants that help ensure reliable performance and consistent yields.
                 </p>
                 <p className="pg-body">
-                  The business specialises in the production and distribution of elite selections,
-                  virus-indexed and disease-free tissue culture plants, with a focus on the banana
-                  industry. We produce approximately <strong>10 million banana plants annually</strong>,
-                  available at three stages of development.
+                Our mission goes beyond supplying plants. We continuously work to introduce innovative agricultural solutions that enhance farm productivity, improve grower profitability, and reduce environmental impact. By combining scientific expertise with practical farming insight, Verdant BioAgri strives to support farmers in building more productive and sustainable farms.
                 </p>
-                <p className="pg-body">
+                {/* <p className="pg-body">
                   The Laboratory forms part of the <strong>ANB Group</strong> — the holding company
                   of a diverse group of entities that comprehensively serve the agricultural value chain
                   through research, technical support, laboratory facilities, nurseries, farming and
                   fruit marketing.
-                </p>
+                </p> */}
               </div>
 
               <div className="reveal-right" style={{ position: 'relative' }}>
                 <img
-                  src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg"
+                  src={mailicon}
                   alt="Du Roi Laboratory"
-                  style={{ width: '100%', height: 480, objectFit: 'cover',
+                  style={{ width: '100%', height: 'clamp(240px,40vw,480px)', objectFit: 'cover',
                     borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)', display: 'block' }}
                 />
                 <div style={{
-                  position: 'absolute', bottom: 24, left: -20,
+                  position: 'absolute', bottom: 16, left: 16,
                   background: '#fff', borderRadius: 'var(--radius-md)',
                   padding: '18px 24px', boxShadow: 'var(--shadow-lg)',
                   border: '1px solid rgba(43,140,62,.15)',
@@ -124,67 +114,103 @@ export default function AboutUs() {
             </div>
           </div>
         </section>
-
-        {/* ── Timeline ── */}
-        <section className="section-pad" ref={r3}>
-          <div className="container">
-            <SectionTitle tag="Our Journey" title="Decades of" italic="Excellence" centre />
-            <div style={{ maxWidth: 700, margin: '0 auto', position: 'relative' }}>
-              <div style={{ position: 'absolute', left: 68, top: 8, bottom: 8,
-                width: 2, background: 'var(--clr-border)', borderRadius: 2 }} />
-              {TIMELINE.map((t, i) => (
-                <div key={i} className={`reveal delay-${Math.min(i + 1, 6)}`}
-                  style={{ display: 'flex', gap: 24, marginBottom: 32, position: 'relative', alignItems: 'flex-start' }}>
-                  <div style={{ width: 128, flexShrink: 0, textAlign: 'right', paddingRight: 16, paddingTop: 2 }}>
-                    <span style={{ fontFamily: 'var(--font-cursive)', fontSize: 22, fontWeight: 700,
-                      color: 'var(--clr-green-mid)' }}>{t.year}</span>
+        
+                {/* ── Vision, Mission, and Excellence ── */}
+                <section className="section-pad" ref={r3}>
+                  <div className="container">
+                    <SectionTitle tag="Our Philosophy" title="Vision, Mission &" italic="Excellence" centre />
+                    <div className="pg-grid-3">
+                      <div className="reveal">
+                        <div className="pg-strength-card"
+                          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = 'var(--shadow-md)'; e.currentTarget.style.borderColor = '#c8e6c9' }}
+                          onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)'; e.currentTarget.style.borderColor = 'var(--clr-border)' }}>
+                          <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>Our Vision</h4>
+                          <p style={{ fontSize: 13.5, color: 'var(--clr-text-mid)', lineHeight: 1.75 }}>
+                            To be the leader in agriculture sector and build a world class enterprise in harmony with community and environment by applying most modern technologies and exploit the untapped potential of rural India in creating wealth for the nation.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="reveal">
+                        <div className="pg-strength-card"
+                          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = 'var(--shadow-md)'; e.currentTarget.style.borderColor = '#c8e6c9' }}
+                          onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)'; e.currentTarget.style.borderColor = 'var(--clr-border)' }}>
+                          <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>Our Mission</h4>
+                          <p style={{ fontSize: 13.5, color: 'var(--clr-text-mid)', lineHeight: 1.75 }}>
+                            At Verdant bioagri, our mission is to empower Indian farmers by providing superior tissue culture plants that enhance agricultural productivity, improve crop quality, and promote sustainable farming practices.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="reveal">
+                        <div className="pg-strength-card"
+                          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = 'var(--shadow-md)'; e.currentTarget.style.borderColor = '#c8e6c9' }}
+                          onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)'; e.currentTarget.style.borderColor = 'var(--clr-border)' }}>
+                          <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>Excellence from Production to Distribution</h4>
+                          <p style={{ fontSize: 13.5, color: 'var(--clr-text-mid)', lineHeight: 1.75 }}>
+                            We take pride in our meticulous approach to plant production, hardening, packaging, and delivery. Our commitment is to provide the highest quality tissue culture plants, ensuring each plant meets stringent criteria in terms of size, leaf count, and overall health.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div style={{ position: 'absolute', left: 60, top: 6, width: 16, height: 16,
-                    background: 'var(--clr-green-mid)', borderRadius: '50%',
-                    border: '3px solid #fff', boxShadow: '0 0 0 2px var(--clr-green-mid)' }} />
-                  <div style={{ paddingLeft: 24, flex: 1 }}>
-                    <p style={{ fontSize: 14.5, color: 'var(--clr-text-mid)', lineHeight: 1.7 }}>{t.event}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── ISO CTA ── */}
-        <section style={{ background: 'var(--clr-green-dark)', padding: '64px 0' }} ref={r4}>
-          <div className="container">
-            <div style={{ display: 'flex', alignItems: 'center', gap: 48,
-              flexWrap: 'wrap', justifyContent: 'space-between' }} className="reveal">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
-                <img
-                  src="https://duroilab.co.za/wp-content/uploads/2024/11/sgs-logo-9001-iso-zertifikat_817_2-3995511386-scaled-1.jpg"
-                  alt="ISO 9001"
-                  style={{ height: 80, width: 'auto', objectFit: 'contain', flexShrink: 0 }}
-                  onError={e => { e.currentTarget.style.display = 'none' }}
-                />
-                <div>
-                  <p style={{ fontFamily: 'var(--font-cursive)', fontSize: 24, fontWeight: 700,
-                    color: '#fff', marginBottom: 8 }}>ISO 9001 Certified</p>
-                  <p style={{ fontSize: 14, color: 'rgba(255,255,255,.62)', lineHeight: 1.7, maxWidth: 420 }}>
-                    Certified for the management system for the production of banana tissue
-                    culture plants since February 2011.
-                  </p>
-                </div>
-              </div>
-              <a href="#/contact"
-                onClick={e => { e.preventDefault(); window.location.hash = '#/contact'; window.scrollTo(0, 0) }}
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 8,
-                  padding: '14px 32px', background: 'var(--clr-green-mid)', color: '#fff',
-                  borderRadius: 'var(--radius-pill)', fontSize: 14, fontWeight: 700,
-                  flexShrink: 0, transition: 'background .22s ease, transform .22s ease' }}
-                onMouseOver={e => { e.currentTarget.style.background = '#3a9e50'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                onMouseOut={e  => { e.currentTarget.style.background = 'var(--clr-green-mid)'; e.currentTarget.style.transform = 'none' }}>
-                Contact Us →
-              </a>
-            </div>
-          </div>
-        </section>
+                </section>
+                
+                        {/* ── Our Process ── */}
+                        <section className="section-pad" style={{ background: 'var(--clr-offwhite)' }} ref={r4}>
+                          <div className="container">
+                            <SectionTitle tag="Our Process" title="From Mother Selection to" italic="Field-Ready Plants" centre />
+                            <div className="pg-grid-2">
+                              <div className="reveal">
+                                <div className="pg-process-step">
+                                  <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>01. Mother Selection</h4>
+                                  <p style={{ fontSize: 13.5, color: 'var(--clr-text-mid)', lineHeight: 1.75 }}>
+                                    Plants sourced from our 5-hectare foundation block, with vigorous growth, high commercial yield, plant stability, and uniformity.
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="reveal">
+                                <div className="pg-process-step">
+                                  <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>02. Meristem Extraction</h4>
+                                  <p style={{ fontSize: 13.5, color: 'var(--clr-text-mid)', lineHeight: 1.75 }}>
+                                    Suckers are harvested and tissue extracted by skilled technicians working in ultra-sterile laminar flow benches. Each piece contains meristematic tissue to generate new shoots.
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="reveal">
+                                <div className="pg-process-step">
+                                  <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>03. Controlled Multiplication</h4>
+                                  <p style={{ fontSize: 13.5, color: 'var(--clr-text-mid)', lineHeight: 1.75 }}>
+                                    Plant material multiplied over six rounds (four weeks each) in controlled growth rooms — stopping at round six to keep mutation below 1%, ensuring genetic stability.
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="reveal">
+                                <div className="pg-process-step">
+                                  <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>04. Virus Indexing</h4>
+                                  <p style={{ fontSize: 13.5, color: 'var(--clr-text-mid)', lineHeight: 1.75 }}>
+                                    Meristem samples are virus-indexed by an NCS TCP accredited third-party laboratory for all known banana viruses before multiplication begins, guaranteeing disease-free planting material.
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="reveal">
+                                <div className="pg-process-step">
+                                  <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>05. Primary Hardening</h4>
+                                  <p style={{ fontSize: 13.5, color: 'var(--clr-text-mid)', lineHeight: 1.75 }}>
+                                    Plants are transplanted into 8 cavity trays or in 72 cavity trays in greenhouses. After 4 to 5 weeks, plants reach the 5 cm in vivo (Primary hardened) stage.
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="reveal">
+                                <div className="pg-process-step">
+                                  <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>06. Secondary Hardening</h4>
+                                  <p style={{ fontSize: 13.5, color: 'var(--clr-text-mid)', lineHeight: 1.75 }}>
+                                    Plants grown on in our on-site nurseries for 6–8 weeks until field-ready at 20 to 25 cm. Full traceability maintained from sucker selection to the grower.
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        <CTABanner />
       </main>
       <Footer />
     </>

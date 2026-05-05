@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import logo from '../assets/logo-1.png'
 
@@ -7,15 +7,22 @@ const NAV_ITEMS = [
   { label: 'Home', hash: '#/' },
   {
     label: 'Our Company', hash: '#/about-us',
+    // dropdown: [
+    //   { label: 'About Us',                    hash: '#/about-us'  },
+    //   { label: 'Our People',                  hash: '#/our-people' },
+    //   { label: 'Corporate Social Investment', hash: '#/csi'        },
+    // ],
+  },
+  {
+    label: 'Our Plants', hash: '#/banana-plants',
     dropdown: [
-      { label: 'About Us',                    hash: '#/about-us'  },
-      { label: 'Our People',                  hash: '#/our-people' },
-      { label: 'Corporate Social Investment', hash: '#/csi'        },
+      { label: 'Banana Plants',      hash: '#/banana-plants'      },
+      { label: 'Pomegranate Plants', hash: '#/pomegranate-plants' },
+      { label: 'Sugarcane Plants',   hash: '#/sugarcane-plants'   },
     ],
   },
-  { label: 'Banana Plants',        hash: '#/banana-plants'      },
-  { label: 'Formosana',            hash: '#/formosana'          },
-  { label: 'Media & Publications', hash: '#/media-publications' },
+  // { label: 'Formosana',            hash: '#/formosana'          },
+  // { label: 'Media & Publications', hash: '#/media-publications' },
   { label: 'Gallery',              hash: '#/gallery'            },
   { label: 'Contact',              hash: '#/contact'            },
 ]
@@ -46,6 +53,15 @@ export default function Navbar() {
   const [scrolled,   setScrolled]   = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDrop,   setOpenDrop]   = useState(null)
+  const dropTimer = useRef(null)
+
+  const handleDropEnter = (label) => {
+    clearTimeout(dropTimer.current)
+    setOpenDrop(label)
+  }
+  const handleDropLeave = () => {
+    dropTimer.current = setTimeout(() => setOpenDrop(null), 150)
+  }
   const [activeHash, setActiveHash] = useState(window.location.hash || '#/')
 
   useEffect(() => {
@@ -85,7 +101,7 @@ export default function Navbar() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9999,
         width: '100%', display: 'flex', alignItems: 'center',
         justifyContent: scrolled ? 'space-between' : 'center',
-        padding:    scrolled ? '0 40px' : '22px 24px 0',
+        padding:    scrolled ? '0 20px' : '16px 16px 0',
         height:     scrolled ? '68px'   : 'auto',
         background: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
         backdropFilter:       scrolled ? 'blur(16px)' : 'none',
@@ -127,8 +143,8 @@ export default function Navbar() {
           <ul style={{ display: 'flex', alignItems: 'center', gap: 2, listStyle: 'none' }}>
             {NAV_ITEMS.map(item => (
               <li key={item.label} className="nav-item" style={{ position: 'relative' }}
-                onMouseEnter={() => item.dropdown && setOpenDrop(item.label)}
-                onMouseLeave={() => setOpenDrop(null)}>
+                onMouseEnter={() => item.dropdown && handleDropEnter(item.label)}
+                onMouseLeave={handleDropLeave}>
                 <a href={item.hash} onClick={e => goTo(item.hash, e)}
                   className={`btn-nav${isActive(item) ? ' active' : ''}`}
                   style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -136,7 +152,10 @@ export default function Navbar() {
                   {item.dropdown && <Caret />}
                 </a>
                 {item.dropdown && openDrop === item.label && (
-                  <div className="nav-dropdown" style={{ display: 'flex' }}>
+                  <div className="nav-dropdown"
+                    style={{ display: 'flex' }}
+                    onMouseEnter={() => clearTimeout(dropTimer.current)}
+                    onMouseLeave={handleDropLeave}>
                     {item.dropdown.map(sub => (
                       <a key={sub.label} href={sub.hash} onClick={e => goTo(sub.hash, e)} className="drop-link">{sub.label}</a>
                     ))}
@@ -144,7 +163,7 @@ export default function Navbar() {
                 )}
               </li>
             ))}
-            <li style={{ marginLeft: 4 }}>
+            {/* <li style={{ marginLeft: 4 }}>
               <a href="#" className="btn-lang" style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="https://duroilab.co.za/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_US.png"
                   alt="EN" style={{ width: 18, height: 12, objectFit: 'cover', borderRadius: 2 }}
@@ -152,7 +171,7 @@ export default function Navbar() {
                 <span style={{ marginLeft: 5 }}>EN</span>
                 <Caret />
               </a>
-            </li>
+            </li> */}
           </ul>
         </nav>
 
@@ -160,7 +179,7 @@ export default function Navbar() {
         <button onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu" className="hamburger-btn"
           style={{ display: 'none', pointerEvents: 'all', background: 'rgba(255,255,255,.92)',
             border: '1px solid rgba(0,0,0,.10)', borderRadius: 'var(--radius-md)',
-            padding: 8, flexDirection: 'column', gap: 4, cursor: 'pointer' }}>
+            padding: 8, flexDirection: 'column', gap: 4, cursor: 'pointer', marginLeft: 'auto' }}>
           {[mobileOpen ? 'rotate(45deg) translate(4px,4px)' : 'none', null,
             mobileOpen ? 'rotate(-45deg) translate(4px,-4px)' : 'none'].map((tf, i) => (
             <span key={i} style={{ display: 'block', width: 22, height: 2, background: '#333',
@@ -196,7 +215,7 @@ export default function Navbar() {
               ))}
             </div>
           ))}
-          <a href="#" style={{ padding: '12px 16px', fontSize: 14, fontWeight: 500, color: 'var(--clr-text)', fontFamily: 'var(--font-body)' }}>🇺🇸 EN</a>
+
         </div>
       )}
 
@@ -204,6 +223,9 @@ export default function Navbar() {
         @media (max-width: 900px) {
           .desktop-nav   { display: none !important; }
           .hamburger-btn { display: flex !important; }
+        }
+        @media (max-width: 600px) {
+          .hamburger-btn { padding: 6px !important; }
         }
       `}</style>
     </>

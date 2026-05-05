@@ -8,7 +8,7 @@ export default function WorldClass() {
       style={{
         position: 'relative',
         width: '100%',
-        height: 280,
+        height: 'clamp(160px,28vw,280px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -42,7 +42,7 @@ export default function WorldClass() {
         }}
       >
         <h2 className="heading-cursive-white reveal">
-          World class technology from Africa
+        World class technology from India
         </h2>
       </div>
     </section>
