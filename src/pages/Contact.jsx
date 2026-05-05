@@ -1,22 +1,18 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser'
 import { Helmet } from 'react-helmet-async'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import PageHero from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
-import whatsappIcon from '../assets/whatsapp.png'
-import marketingIcon from '../assets/marketing.png'
-import phoneicon from '../assets/circle.png'
-import mailicon from '../assets/letter.png'
-
-
-
+import { MdEmail, MdPhone, MdHeadsetMic } from 'react-icons/md'
+import { FaWhatsapp } from 'react-icons/fa'
 
 const CONTACT_CARDS = [
-  { icon: mailicon, label: 'Email',     value: 'head-marketing@verdantbioagri.com', link: 'mailto:head-marketing@verdantbioagri.com', sub: 'We aim to respond within 24 hours' },
-  { icon: phoneicon, label: 'Office', value: '+91 9945356478 ',      link: 'tel:+27153451217',           sub: 'Mon–Fri: 07:00–17:00 SAST' },
-  { icon: marketingIcon, label: 'Marketing Head',  value: '+91 7507135999',      link: 'tel:+917507135999',  sub: 'Quick queries & order enquiries' },
-  { icon: whatsappIcon, label: 'Whatsapp',   value: '+91 7507135999',   link: 'https://wa.me/917507135999', sub: 'Quick queries & order enquiries' },
+  { icon: MdEmail,      label: 'Email',          value: 'head-marketing@verdantbioagri.com', link: 'mailto:head-marketing@verdantbioagri.com', sub: 'We aim to respond within 24 hours' },
+  { icon: MdPhone,      label: 'Office',         value: '+91 9945356478',  link: 'tel:+919945356478',  sub: 'Mon–Sat: 08:00–18:00' },
+  { icon: MdHeadsetMic, label: 'Marketing Head', value: '+91 7507135999',  link: 'tel:+917507135999',  sub: 'Quick queries & order enquiries' },
+  { icon: FaWhatsapp,   label: 'WhatsApp',       value: '+91 7507135999',  link: 'https://wa.me/917507135999', sub: 'Quick queries & order enquiries' },
 ]
 console.log(CONTACT_CARDS)
 const SUBJECTS = [
@@ -52,6 +48,8 @@ export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', country: '', subject: '', message: '' })
   const [sent, setSent]     = useState(false)
   const [busy, setBusy]     = useState(false)
+  const [error, setError]   = useState('')
+  const formRef             = useRef(null)
 
   const r1 = usePageReveal()
   const r2 = usePageReveal()
@@ -61,7 +59,21 @@ export default function Contact() {
   const onSubmit = e => {
     e.preventDefault()
     setBusy(true)
-    setTimeout(() => { setBusy(false); setSent(true) }, 1300)
+    setError('')
+    emailjs.sendForm(
+      'service_s871b7y',       // 🔁 Replace with your EmailJS Service ID
+      'template_pq1st5g',      // 🔁 Replace with your EmailJS Template ID
+      formRef.current,
+      'MzRdh7xBtrpAzb-hz'        // 🔁 Replace with your EmailJS Public Key
+    )
+    .then(() => {
+      setBusy(false)
+      setSent(true)
+    })
+    .catch(() => {
+      setBusy(false)
+      setError('Something went wrong. Please try again or email us directly.')
+    })
   }
 
   const focusStyle  = e => { e.target.style.borderColor = 'var(--clr-green-mid)' }
@@ -124,14 +136,14 @@ export default function Contact() {
           alignItems: 'center'
         }}
       >
-        {typeof c.icon === 'string' && !c.icon.includes('.png') ? (
-          <span>{c.icon}</span>
+        {typeof c.icon === 'function' ? (
+          <c.icon size={28} color={
+            c.label === 'WhatsApp' ? '#25D366' :
+            c.label === 'Email'    ? 'var(--clr-green-mid)' :
+            'var(--clr-green-dark)'
+          } />
         ) : (
-          <img
-            src={c.icon}
-            alt={c.label}
-            style={{ width: 28, height: 28, objectFit: 'contain' }}
-          />
+          <span>{c.icon}</span>
         )}
       </div>
 
@@ -304,10 +316,10 @@ export default function Contact() {
                     <h3 style={{ fontFamily: 'var(--font-cursive)', fontSize: 28,
                       color: 'var(--clr-green-dark)', marginBottom: 10 }}>Message Sent!</h3>
                     <p style={{ fontSize: 14, color: 'var(--clr-text-mid)', lineHeight: 1.7 }}>
-                      Thank you for contacting Du Roi Laboratory. A member of our team
+                      Thank you for contacting Verdant Bio Agri LLP. A member of our team
                       will be in touch with you shortly.
                     </p>
-                    <button onClick={() => { setSent(false); setForm({ name:'',email:'',phone:'',country:'',subject:'',message:'' }) }}
+                    <button onClick={() => { setSent(false); setError(''); setForm({ name:'',email:'',phone:'',country:'',subject:'',message:'' }) }}
                       style={{ marginTop: 24, padding: '10px 28px',
                         background: 'var(--clr-green-mid)', color: '#fff',
                         borderRadius: 'var(--radius-pill)', fontSize: 13, fontWeight: 600,
@@ -316,7 +328,7 @@ export default function Contact() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={onSubmit}
+                  <form ref={formRef} onSubmit={onSubmit}
                     style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                       <Field label="Full Name" required>
@@ -365,11 +377,21 @@ export default function Contact() {
                         fontSize: 14, fontWeight: 700, border: 'none',
                         cursor: busy ? 'not-allowed' : 'pointer',
                         boxShadow: '0 4px 20px rgba(43,140,62,.30)',
+                        display: 'inline-flex', alignItems: 'center', gap: 8,
                         transition: 'background var(--tr-base), transform var(--tr-base)' }}
                       onMouseOver={e => { if (!busy) e.currentTarget.style.background = 'var(--clr-green-dark)' }}
                       onMouseOut={e  => { if (!busy) e.currentTarget.style.background = 'var(--clr-green-mid)' }}>
-                      {busy ? '⏳ Sending…' : '✉ Send Message'}
+                      {busy ? (
+                        <><span style={{ fontSize: 18 }}>⏳</span> Sending…</>
+                      ) : (
+                        <><MdEmail size={18} /> Send Message</>
+                      )}
                     </button>
+                    {error && (
+                      <p style={{ fontSize: 13, color: 'var(--clr-red-check)', marginTop: 8 }}>
+                        ⚠ {error}
+                      </p>
+                    )}
                   </form>
                 )}
               </div>

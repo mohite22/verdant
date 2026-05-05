@@ -1,30 +1,23 @@
 import { useState, useEffect, useRef } from 'react'
+import { FiHome, FiInfo, FiImage, FiPhone, FiChevronDown } from 'react-icons/fi'
 
 import logo from '../assets/logo-1.png'
 
 
 const NAV_ITEMS = [
-  { label: 'Home', hash: '#/' },
-  {
-    label: 'Our Company', hash: '#/about-us',
-    // dropdown: [
-    //   { label: 'About Us',                    hash: '#/about-us'  },
-    //   { label: 'Our People',                  hash: '#/our-people' },
-    //   { label: 'Corporate Social Investment', hash: '#/csi'        },
-    // ],
+  { label: 'Home',        hash: '#/',              icon: FiHome },
+  { label: 'Our Company', hash: '#/about-us',      icon: FiInfo,
+    // dropdown: [...]
   },
-  {
-    label: 'Our Plants', hash: '#/banana-plants',
+  { label: 'Our Plants',  hash: '#/banana-plants', icon: null,
     dropdown: [
       { label: 'Banana Plants',      hash: '#/banana-plants'      },
       { label: 'Pomegranate Plants', hash: '#/pomegranate-plants' },
       { label: 'Sugarcane Plants',   hash: '#/sugarcane-plants'   },
     ],
   },
-  // { label: 'Formosana',            hash: '#/formosana'          },
-  // { label: 'Media & Publications', hash: '#/media-publications' },
-  { label: 'Gallery',              hash: '#/gallery'            },
-  { label: 'Contact',              hash: '#/contact'            },
+  { label: 'Gallery',     hash: '#/gallery',       icon: FiImage },
+  { label: 'Contact',     hash: '#/contact',       icon: FiPhone },
 ]
 
 export function navigate(hash) {
@@ -33,12 +26,7 @@ export function navigate(hash) {
 }
 
 function Caret() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24"
-      style={{ fill: '#999', marginLeft: -3, flexShrink: 0 }}>
-      <path d="M7 10l5 5 5-5z" />
-    </svg>
-  )
+  return <FiChevronDown size={14} style={{ marginLeft: 2, flexShrink: 0, color: '#999' }} />
 }
 
 function LogoMark({ size = 36 }) {
@@ -147,7 +135,8 @@ export default function Navbar() {
                 onMouseLeave={handleDropLeave}>
                 <a href={item.hash} onClick={e => goTo(item.hash, e)}
                   className={`btn-nav${isActive(item) ? ' active' : ''}`}
-                  style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                  {item.icon && <item.icon size={14} />}
                   {item.label}
                   {item.dropdown && <Caret />}
                 </a>

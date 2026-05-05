@@ -5,6 +5,7 @@ import bananaimg1 from '../assets/GrandeNain02.jpg'
 import bananaimg2 from '../assets/yellkibanana.jpg'
 import bananaimg3 from '../assets/banan23.jpeg'
 import bannervideo from '../assets/videos/homehero.mp4' // ✅ ADD YOUR VIDEO
+import CTABanner from "../components/CTABanner"; // Corrected path
 
 /* ─── Shared scroll-reveal hook ─── */
 function useReveal(threshold = 0.1) {
@@ -514,8 +515,7 @@ function WhyTCPlants() {
           {/* Benefits list */}
           <div className="reveal-right">
             <p className="section-tag">Why Choose TC Plants</p>
-            <h2 className="section-title">
-              The Du Roi<br /><em>Advantage</em>
+            <h2 className="section-title"><em>Advantage</em>
             </h2>
             <div className="section-divider-line" />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)' }}>
@@ -561,65 +561,6 @@ function WhyTCPlants() {
 }
 
 
-/* ── CTA Banner ── */
-function CTABanner() {
-  const ref = useReveal()
-  return (
-    <section style={{ position: 'relative', overflow: 'hidden', padding: 'var(--sp-20) 0' }} ref={ref}>
-      <div style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: "url('https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg')",
-        backgroundSize: 'cover', backgroundPosition: 'center',
-      }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'rgba(15,40,20,0.82)' }} />
-      <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-        <div className="reveal">
-          <h2 style={{
-            fontFamily: 'var(--font-cursive)', fontSize: 'clamp(28px, 4vw, 48px)',
-            fontWeight: 700, color: '#fff', marginBottom: 'var(--sp-4)',
-            textShadow: '0 2px 20px rgba(0,0,0,0.3)',
-          }}>
-            Ready to Order Your Plants?
-          </h2>
-          <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.75)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto var(--sp-8)' }}>
-            Contact our team to discuss your planting programme, order quantities and
-            preferred delivery stage. We supply globally with full phytosanitary documentation.
-          </p>
-          <div style={{ display: 'flex', gap: 'var(--sp-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="#contact" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '14px 36px', background: 'var(--clr-green-mid)', color: '#fff',
-              borderRadius: 'var(--radius-pill)', fontSize: 14, fontWeight: 700,
-              boxShadow: '0 4px 20px rgba(43,140,62,0.4)',
-              transition: 'background var(--tr-base), transform var(--tr-base)',
-            }}
-              className="cta-btn-primary"
-            >
-              Get in Touch
-            </a>
-            <a href="mailto:info@duroilab.co.za" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '14px 36px',
-              background: 'rgba(255,255,255,0.12)', color: '#fff',
-              border: '1.5px solid rgba(255,255,255,0.35)',
-              borderRadius: 'var(--radius-pill)', fontSize: 14, fontWeight: 600,
-              backdropFilter: 'blur(4px)',
-              transition: 'background var(--tr-base)',
-            }}
-              className="cta-btn-ghost"
-            >
-              info@duroilab.co.za
-            </a>
-          </div>
-        </div>
-      </div>
-      <style>{`
-        .cta-btn-primary:hover{ background:var(--clr-green-dark) !important; transform:translateY(-2px) !important; }
-        .cta-btn-ghost:hover{ background:rgba(255,255,255,0.22) !important; }
-      `}</style>
-    </section>
-  )
-}
 
 /* ═════════════════════════════════════════════════════
    SHARED CSS injected once
