@@ -21,7 +21,7 @@ export default function PageHero({ title, subtitle, breadcrumb, bgImage, bgVideo
       overflow: 'hidden', display: 'flex', alignItems: 'center',
     }}>
       {bgVideo ? (
-        <video autoPlay muted loop playsInline style={{
+        <video autoPlay muted loop playsInline preload="none" aria-hidden="true" style={{
           position: 'absolute', inset: 0, width: '100%', height: '100%',
           objectFit: 'cover', zIndex: 0,
         }}>
@@ -63,7 +63,7 @@ export default function PageHero({ title, subtitle, breadcrumb, bgImage, bgVideo
           <h1 style={{
             fontFamily: 'var(--font-cursive)',
             fontSize: 'clamp(32px,5vw,62px)',
-            fontWeight: 700, color: '#fff', lineHeight: 1.12,
+            fontWeight: 400, color: '#fff', lineHeight: 1.12,
             marginBottom: subtitle ? 16 : 0,
             textShadow: '0 2px 20px rgba(0,0,0,.28)',
           }}>

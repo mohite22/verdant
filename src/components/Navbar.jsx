@@ -1,30 +1,23 @@
 import { useState, useEffect, useRef } from 'react'
+import { FiHome, FiInfo, FiImage, FiPhone, FiChevronDown } from 'react-icons/fi'
 
 import logo from '../assets/logo-1.png'
 
 
 const NAV_ITEMS = [
-  { label: 'Home', hash: '#/' },
-  {
-    label: 'Our Company', hash: '#/about-us',
-    // dropdown: [
-    //   { label: 'About Us',                    hash: '#/about-us'  },
-    //   { label: 'Our People',                  hash: '#/our-people' },
-    //   { label: 'Corporate Social Investment', hash: '#/csi'        },
-    // ],
+  { label: 'Home',        hash: '#/',              icon: FiHome },
+  { label: 'Our Company', hash: '#/about-us',      icon: FiInfo,
+    // dropdown: [...]
   },
-  {
-    label: 'Our Plants', hash: '#/banana-plants',
+  { label: 'Our Plants',  hash: '#/banana-plants', icon: null,
     dropdown: [
       { label: 'Banana Plants',      hash: '#/banana-plants'      },
       { label: 'Pomegranate Plants', hash: '#/pomegranate-plants' },
       { label: 'Sugarcane Plants',   hash: '#/sugarcane-plants'   },
     ],
   },
-  // { label: 'Formosana',            hash: '#/formosana'          },
-  // { label: 'Media & Publications', hash: '#/media-publications' },
-  { label: 'Gallery',              hash: '#/gallery'            },
-  { label: 'Contact',              hash: '#/contact'            },
+  { label: 'Gallery',     hash: '#/gallery',       icon: FiImage },
+  { label: 'Contact',     hash: '#/contact',       icon: FiPhone },
 ]
 
 export function navigate(hash) {
@@ -33,12 +26,7 @@ export function navigate(hash) {
 }
 
 function Caret() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24"
-      style={{ fill: '#999', marginLeft: -3, flexShrink: 0 }}>
-      <path d="M7 10l5 5 5-5z" />
-    </svg>
-  )
+  return <FiChevronDown size={14} style={{ marginLeft: 2, flexShrink: 0, color: '#999' }} />
 }
 
 function LogoMark({ size = 36 }) {
@@ -65,7 +53,15 @@ export default function Navbar() {
   const [activeHash, setActiveHash] = useState(window.location.hash || '#/')
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > window.innerHeight * 0.8)
+    let ticking = false
+    const fn = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > window.innerHeight * 0.8)
+        ticking = false
+      })
+    }
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
@@ -108,12 +104,12 @@ export default function Navbar() {
         WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
         boxShadow:    scrolled ? '0 2px 0 rgba(0,0,0,.06),0 4px 24px rgba(0,0,0,.08)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(0,0,0,.06)' : 'none',
-        pointerEvents: 'none',
+        pointerEvents: 'auto',
         transition: 'background .35s,box-shadow .35s,padding .35s,height .35s,justify-content .35s',
       }}>
 
         {/* Sticky logo */}
-        <a href="#/" onClick={e => goTo('#/', e)} style={{
+        <a href="#/" onClick={e => goTo('#/', e)} className="sticky-logo" style={{
           display: 'flex', alignItems: 'center', gap: 10,
           pointerEvents: 'all', textDecoration: 'none',
           opacity: scrolled ? 1 : 0, transform: scrolled ? 'translateX(0)' : 'translateX(-16px)',
@@ -147,7 +143,11 @@ export default function Navbar() {
                 onMouseLeave={handleDropLeave}>
                 <a href={item.hash} onClick={e => goTo(item.hash, e)}
                   className={`btn-nav${isActive(item) ? ' active' : ''}`}
-                  style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  style={{ display: 'flex', alignItems: 'center', gap: 5,
+                    borderBottom: isActive(item) && item.dropdown ? '2px solid var(--clr-green-mid)' : '2px solid transparent',
+                    paddingBottom: 2,
+                  }}>
+                  {item.icon && <item.icon size={14} />}
                   {item.label}
                   {item.dropdown && <Caret />}
                 </a>
@@ -157,7 +157,10 @@ export default function Navbar() {
                     onMouseEnter={() => clearTimeout(dropTimer.current)}
                     onMouseLeave={handleDropLeave}>
                     {item.dropdown.map(sub => (
-                      <a key={sub.label} href={sub.hash} onClick={e => goTo(sub.hash, e)} className="drop-link">{sub.label}</a>
+                      <a key={sub.label} href={sub.hash} onClick={e => goTo(sub.hash, e)}
+                        className={`drop-link${activeHash === sub.hash ? ' drop-link-active' : ''}`}>
+                        {sub.label}
+                      </a>
                     ))}
                   </div>
                 )}
@@ -223,6 +226,19 @@ export default function Navbar() {
         @media (max-width: 900px) {
           .desktop-nav   { display: none !important; }
           .hamburger-btn { display: flex !important; }
+          header {
+            justify-content: space-between !important;
+            padding: 12px 16px !important;
+            height: 60px !important;
+            background: rgba(0,0,0,0.35) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
+          }
+          header .sticky-logo {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+          }
         }
         @media (max-width: 600px) {
           .hamburger-btn { padding: 6px !important; }

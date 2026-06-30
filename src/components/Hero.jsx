@@ -20,7 +20,15 @@ export default function Hero() {
   }, [])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.8)
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > window.innerHeight * 0.8)
+        ticking = false
+      })
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -50,6 +58,8 @@ export default function Hero() {
         muted
         loop
         playsInline
+        preload="none"
+        aria-hidden="true"
         style={{
           position: 'absolute',
           inset: 0,
@@ -76,6 +86,7 @@ export default function Hero() {
 
       {/* HERO LOGO */}
       <div
+        id="home-logo"
         style={{
           position: 'absolute',
           bottom: 52,
@@ -107,7 +118,7 @@ export default function Hero() {
       </div>
 
       {/* QUOTE CARD */}
-      <div style={{
+      <div id="home-quote" style={{
         position: 'absolute',
         bottom: 52,
         right: 60,
@@ -122,12 +133,13 @@ export default function Hero() {
           <p style={{
             fontFamily: 'Georgia, serif',
             fontSize: 17,
-            fontWeight: 700,
+            fontWeight: 500,
+            textAlign:'center',
             color: '#192a1e',
             lineHeight: 1.45,
             marginBottom: 8,
           }}>
-            "वृक्षाणां कदली श्रेष्ठा उपयोगे सर्वदा स्थिता ।"
+            "।। वृक्षाणां कदली श्रेष्ठा उपयोगे सर्वदा स्थिता ।।"
           </p>
           {/* <p className="body-text-sm" style={{ color: '#4a5f4e' }}>
             – Og Mandino
@@ -223,11 +235,11 @@ export default function Hero() {
           50%     { opacity: 1; }
         }
         @media (max-width: 680px) {
-          #home-logo  { left: 16px !important; bottom: 120px !important; }
+          #home-logo  { left: 16px !important; bottom: 130px !important; }
           #home-quote { right: 12px !important; left: 12px !important; bottom: 20px !important; max-width: 100% !important; }
         }
         @media (max-width: 440px) {
-          #home-logo  { left: 12px !important; bottom: 130px !important; }
+          #home-logo  { left: 12px !important; bottom: 140px !important; }
         }
       `}</style>
     </section>

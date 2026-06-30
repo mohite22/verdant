@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import PageHero from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
+import SEO from '../components/SEO'
 
 const TYPES = ['All', 'News', 'Feature', 'Technical']
 
@@ -42,6 +43,12 @@ export default function MediaPublications() {
 
   return (
     <>
+      <SEO
+        title="Media & Publications"
+        description="News, features and technical publications about Verdant BioAgri LLP and the tissue culture plant industry in India. Read our latest press coverage and research articles."
+        keywords="tissue culture news India, banana plant publications, verdant bioagri press, tissue culture research articles"
+        url="/media-publications"
+      />
       <Navbar />
       <main>
         <PageHero

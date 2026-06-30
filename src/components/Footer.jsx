@@ -1,55 +1,11 @@
-/* Social icons data */
+import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp, FaLinkedinIn } from 'react-icons/fa'
+
 const SOCIALS = [
-  {
-    name: 'Facebook',
-    url:  '#',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Instagram',
-    url:  '#',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-           strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
-        <rect x="2" y="2" width="20" height="20" rx="5" />
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-      </svg>
-    ),
-  },
-  {
-    name: 'YouTube',
-    url:  '#',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a3a22" />
-      </svg>
-    ),
-  },
-  {
-    name: 'WhatsApp',
-    url:  '#',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'LinkedIn',
-    url:  '#',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
-        <circle cx="4" cy="4" r="2" />
-      </svg>
-    ),
-  },
+  { name: 'Facebook',  url: 'https://www.facebook.com/people/Verdant-BioAgri-LLP/61582971058162/', icon: FaFacebookF },
+  // { name: 'Instagram', url: '#', icon: FaInstagram },
+  // { name: 'YouTube',   url: '#', icon: FaYoutube },
+  // { name: 'WhatsApp',  url: '#', icon: FaWhatsapp },
+  // { name: 'LinkedIn',  url: '#', icon: FaLinkedinIn },
 ]
 
 export default function Footer() {
@@ -64,7 +20,7 @@ export default function Footer() {
             {/* Tagline */}
             <div>
               <p className="footer-tagline">
-                <em>Quality is an investment in the future.</em>
+              Quality is an investment in the future.
               </p>
             </div>
 
@@ -76,6 +32,10 @@ export default function Footer() {
               <a href="tel:+91 7507135999" className="footer-link">
               +91 7507135999
               </a>
+              <a href="tel:+91 9945356478" className="footer-link">
+              +91 9945356478
+              </a>
+              
             </div>
 
             {/* Social icons — uses global .soc-btn */}
@@ -90,7 +50,7 @@ export default function Footer() {
                   title={s.name}
                   aria-label={s.name}
                 >
-                  {s.icon}
+                  <s.icon size={16} />
                 </a>
               ))}
             </div>
@@ -105,7 +65,7 @@ export default function Footer() {
           <div className="footer-bottom-inner">
             <p className="footer-copyright">© Copyright – Verdant Bio Agri LLP</p>
 
-            <div className="footer-bottom-links">
+            {/* <div className="footer-bottom-links">
               <a
                 href="#"
                 target="_blank"
@@ -123,7 +83,7 @@ export default function Footer() {
               >
                 Site Credits
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

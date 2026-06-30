@@ -10,6 +10,7 @@ import WorldClass   from './components/WorldClass'
 import IsoSection   from './components/IsoSection'
 import GroupLogos   from './components/GroupLogos'
 import Footer       from './components/Footer'
+import SEO          from './components/SEO'
 
 /* Pages */
 import BananaPlants      from './components/BananaPlants'
@@ -46,6 +47,24 @@ function getPage() {
 function HomePage() {
   return (
     <>
+      <SEO
+        title="Tissue Culture Plants Supplier India"
+        description="Verdant BioAgri LLP — India's leading supplier of tissue culture Banana, Pomegranate and Sugarcane plants. DBT certified, disease-free, high-yield planting material."
+        keywords="tissue culture banana plants, pomegranate tissue culture, sugarcane seedlings, verdant bioagri, tissue culture lab India, disease free plants"
+        url="/"
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'Verdant BioAgri LLP',
+          url: 'https://verdantbioagri.com',
+          description: 'India\'s leading supplier of tissue culture Banana, Pomegranate and Sugarcane plants.',
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: 'https://verdantbioagri.com/?s={search_term_string}',
+            'query-input': 'required name=search_term_string',
+          },
+        }}
+      />
       <Navbar />
       <main>
         <Hero />

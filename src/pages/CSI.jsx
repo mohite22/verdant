@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import PageHero from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
+import SEO from '../components/SEO'
 
 const INITIATIVES = [
   { icon: '👶', color: 'var(--clr-green-mid)', title: 'On-Site Crèche Facility',
@@ -21,6 +22,12 @@ export default function CSI() {
 
   return (
     <>
+      <SEO
+        title="Corporate Social Investment"
+        description="Verdant BioAgri LLP invests in communities through on-site crèche facilities, skills development, agricultural education and local job creation."
+        keywords="verdant bioagri CSI, corporate social investment agriculture India, community development tissue culture"
+        url="/csi"
+      />
       <Navbar />
       <main>
         <PageHero
@@ -54,7 +61,8 @@ export default function CSI() {
               </div>
               <div className="reveal-right">
                 <img src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg"
-                  alt="Community"
+                  alt="Community investment at Verdant BioAgri"
+                  loading="lazy"
                   style={{ width: '100%', height: 'clamp(240px,40vw,460px)', objectFit: 'cover',
                     borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', display: 'block' }} />
               </div>

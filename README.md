@@ -1,4 +1,4 @@
-# DuRoi Lab — Complete React Website
+# Verdant bioAgri LLP, — Complete React Website
 
 Full multi-page React + Vite website replica of **duroilab.co.za** with all pages.
 

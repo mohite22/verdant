@@ -1,15 +1,16 @@
 import React from 'react'
 import CTAButton from './CTAButton'
-import { useReveal } from '../hooks/useReveal' // Use curly braces for named import
+import { useReveal } from '../hooks/useReveal'
 
-export default function CTABanner() {
+export default function CTABanner({ bgImage }) {
   const ref = useReveal()
+  const bg = bgImage || 'https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg'
 
   return (
     <section style={{ position: 'relative', overflow: 'hidden', padding: 'var(--sp-20) 0' }} ref={ref}>
       <div style={{
         position: 'absolute', inset: 0,
-        backgroundImage: "url('https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg')",
+        backgroundImage: `url('${bg}')`,
         backgroundSize: 'cover', backgroundPosition: 'center',
       }} />
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(15,40,20,0.82)' }} />
@@ -17,7 +18,7 @@ export default function CTABanner() {
         <div className="reveal">
           <h2 style={{
             fontFamily: 'var(--font-cursive)', fontSize: 'clamp(28px, 4vw, 48px)',
-            fontWeight: 700, color: '#fff', marginBottom: 'var(--sp-4)',
+            fontWeight: 400, color: '#fff', marginBottom: 'var(--sp-4)',
             textShadow: '0 2px 20px rgba(0,0,0,0.3)',
           }}>
             Ready to Order Your Plants?

@@ -1,13 +1,9 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Attaches an IntersectionObserver to `ref`.
- * When the element (or its children bearing .reveal / .reveal-left / .reveal-right)
- * enters the viewport, the class `.visible` is added.
- *
- * @param {object}  options              - IntersectionObserver options
- * @param {number}  options.threshold    - default 0.10
- * @param {boolean} options.stagger      - if true, children get staggered delays
+ * Accepts either:
+ *   useReveal(0.1)                          — number threshold
+ *   useReveal({ threshold: 0.1, stagger })  — options object (legacy callers)
  */
 export function useReveal(options = {}) {
   const ref = useRef(null)
@@ -16,7 +12,7 @@ export function useReveal(options = {}) {
     const el = ref.current
     if (!el) return
 
-    const { threshold = 0.10, stagger = false } = options
+    const threshold = typeof options === 'number' ? options : (options.threshold ?? 0.08)
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -28,13 +24,7 @@ export function useReveal(options = {}) {
           )
 
           if (targets.length > 0) {
-            targets.forEach((t, i) => {
-              if (stagger) {
-                setTimeout(() => t.classList.add('visible'), i * 70)
-              } else {
-                t.classList.add('visible')
-              }
-            })
+            targets.forEach((t, i) => setTimeout(() => t.classList.add('visible'), i * 70))
           } else if (
             entry.target.classList.contains('reveal') ||
             entry.target.classList.contains('reveal-left') ||
@@ -46,7 +36,7 @@ export function useReveal(options = {}) {
           observer.unobserve(entry.target)
         })
       },
-      { threshold }
+      { threshold, rootMargin: '0px 0px -40px 0px' }
     )
 
     observer.observe(el)
@@ -55,3 +45,5 @@ export function useReveal(options = {}) {
 
   return ref
 }
+
+export default useReveal
