@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import PageHero from '../components/PageHero'
+import SEO from '../components/SEO'
 import bnvimg1 from '../assets/bnv1.jpg'
 import bnvimg2 from '../assets/bnv2.jpg'
 import bnvimg3 from '../assets/bnv3.jpg'
@@ -12,11 +13,11 @@ import scimg1  from '../assets/IMG_4058.jpg'
 import scimg2  from '../assets/IMG_4059.jpg'
 import scimg3  from '../assets/IMG_4060.jpg'
 import scimg4  from '../assets/IMG_4061.jpg'
-import bananaimg1 from '../assets/GrandeNain02.jpg'
+//import bananaimg1 from '../assets/GrandeNain02.jpg'
 import bananaimg2 from '../assets/yellkibanana.jpg'
 import bananaimg3 from '../assets/banan23.jpeg'
-import bananaimg4 from '../assets/Bnan22.jpg'
-import aboutimg  from '../assets/aboutus-imag.jpg'
+//import bananaimg4 from '../assets/Bnan22.jpg'
+//import aboutimg  from '../assets/aboutus-imag.jpg'
 import homebanana from '../assets/home-banana.jpg'
 import labimg1 from '../assets/lab/DSC02195.jpg'
 import labimg2 from '../assets/lab/DSC_1469.jpg'
@@ -33,17 +34,25 @@ import sugimg5 from '../assets/pomegranate/IMG_3150.jpg'
 import sugimg6 from '../assets/pomegranate/IMG_3165.jpg'
 import sugimg7 from '../assets/pomegranate/IMG_3166.jpg'
 import sugimg8 from '../assets/pomegranate/IMG_3764.jpg'
+import fieldvisite1 from '../assets/IMG_3288.jpg'
+import fieldvisite2 from '../assets/IMG_3295.jpg'
+import fieldvisite3 from '../assets/IMG_3312.jpg'
+import fieldvisite4 from '../assets/IMG_3323.jpg'
+import fieldvisite5 from '../assets/IMG_3670.jpg'
+import fieldvisite6 from '../assets/IMG_3674.jpg'
+import fieldvisite7 from '../assets/IMG_3678.jpg'
+import fieldvisite8 from '../assets/IMG_3680.jpg'
 
-const CATS = ['All', 'Banana', 'Pomegranate', 'Sugarcane', 'Laboratory']
+const CATS = ['All', 'Banana', 'Pomegranate', 'Sugarcane', 'Laboratory', 'Visits']
 
 const PHOTOS = [
   { src: bnvimg1,    cat: 'Banana',       caption: 'Banana nursery — healthy plants in the field' },
   { src: bnvimg2,    cat: 'Banana',       caption: 'Banana plants ready for field planting' },
   { src: bnvimg3,    cat: 'Banana',       caption: 'Banana plantation — uniform crop stand' },
-  { src: bananaimg1, cat: 'Banana',       caption: 'Grand Nain variety — tissue culture banana' },
+  //{ src: bananaimg1, cat: 'Banana',       caption: 'Grand Nain variety — tissue culture banana' },
   { src: bananaimg2, cat: 'Banana',       caption: 'Yelakki banana variety — Elachi banana' },
   { src: bananaimg3, cat: 'Banana',       caption: 'Banana tissue culture plants with roots' },
-  { src: bananaimg4, cat: 'Banana',       caption: 'Banana plants at nursery stage' },
+  //{ src: bananaimg4, cat: 'Banana',       caption: 'Banana plants at nursery stage' },
   { src: homebanana, cat: 'Banana',       caption: 'Tissue culture banana — field ready' },
   { src: pnvimg1,    cat: 'Pomegranate',  caption: 'Pomegranate tissue culture plant' },
   { src: pnvimg2,    cat: 'Pomegranate',  caption: 'Pomegranate plants in hardening nursery' },
@@ -60,7 +69,7 @@ const PHOTOS = [
   { src: sugimg6,    cat: 'Pomegranate',  caption: 'Pomegranate plantation — uniform stand' },
   { src: sugimg7,    cat: 'Pomegranate',  caption: 'Pomegranate crop — healthy growth' },
   { src: sugimg8,    cat: 'Pomegranate',  caption: 'Pomegranate field — tissue culture derived' },
-  { src: aboutimg,   cat: 'Laboratory',   caption: 'Verdant BioAgri tissue culture laboratory' },
+  //{ src: aboutimg,   cat: 'Laboratory',   caption: 'Verdant BioAgri tissue culture laboratory' },
   { src: labimg1,    cat: 'Laboratory',   caption: 'Laboratory — tissue culture facility' },
   { src: labimg2,    cat: 'Laboratory',   caption: 'Sterile laminar flow bench operations' },
   { src: labimg3,    cat: 'Laboratory',   caption: 'Meristem extraction under sterile conditions' },
@@ -68,6 +77,14 @@ const PHOTOS = [
   { src: labimg5,    cat: 'Laboratory',   caption: 'Controlled growth room — plant multiplication' },
   { src: labimg6,    cat: 'Laboratory',   caption: 'Weaning greenhouse — primary hardening' },
   { src: labimg7,    cat: 'Laboratory',   caption: 'Laboratory technicians at work' },
+  { src: fieldvisite1,    cat: 'Visits',   caption: 'Field Visit' },
+  { src: fieldvisite2,    cat: 'Visits',   caption: 'Field Visit' },
+  { src: fieldvisite3,    cat: 'Visits',   caption: 'Field Visit' },
+  { src: fieldvisite4,    cat: 'Visits',   caption: 'Field Visit' },
+  { src: fieldvisite5,    cat: 'Visits',   caption: 'Field Visit' },
+  { src: fieldvisite6,    cat: 'Visits',   caption: 'Field Visit' },
+  { src: fieldvisite7,    cat: 'Visits',   caption: 'Field Visit' },
+  { src: fieldvisite8,    cat: 'Visits',   caption: 'Field Visit' },
 ]
 
 export default function Gallery() {
@@ -93,12 +110,18 @@ export default function Gallery() {
 
   return (
     <>
+      <SEO
+        title="Gallery"
+        description="Browse our photo gallery of tissue culture banana, pomegranate and sugarcane plants, laboratory operations, nurseries and field visits at Verdant BioAgri LLP."
+        keywords="tissue culture plant gallery, banana nursery photos, pomegranate plants images, sugarcane seedlings gallery, verdant bioagri lab"
+        url="/gallery"
+      />
       <Navbar />
       <main>
         <PageHero
           title="Gallery"
           subtitle="A visual journey through our laboratory, nurseries and plantations."
-          bgImage="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg"
+          bgImage={bnvimg3}
         />
 
         <section className="section-pad">

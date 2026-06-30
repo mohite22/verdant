@@ -9,7 +9,7 @@ export default function Specialists() {
         <div className="reveal" ref={ref} style={{ maxWidth: 560, marginInline: 'auto' }}>
           <p className="body-text" style={{ fontSize: 'var(--fs-md)', lineHeight: 1.85 }}>
             <span
-              className="heading-cursive-lg"
+              className="heading-cursive-lg page-em"
               style={{ marginRight: 6, verticalAlign: 'middle', lineHeight: 1 }}
             >
               Specialists

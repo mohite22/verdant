@@ -1,5 +1,5 @@
 import { useReveal } from '../hooks/useReveal'
-import mapimage from '../assets/mapimag.png'
+import mapimage from '../assets/indiamap.png'
 
 export default function IsoSection() {
   const ref = useReveal({ threshold: 0.1 })

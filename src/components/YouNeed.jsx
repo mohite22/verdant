@@ -21,7 +21,7 @@ export default function YouNeed() {
           {/* Left — heading + bullet list */}
           <div className="reveal-left">
             <h2 style={{ marginBottom: 'var(--sp-8)' }}>
-              <span className="heading-cursive-md">You Need:</span>
+              <span className="heading-cursive-md">You <span className='page-em'>Need:</span></span>
             </h2>
             <ul className="bullet-list">
               {NEEDS.map((item, i) => (
@@ -52,7 +52,7 @@ export default function YouNeed() {
                           src={bananaimg}
                           alt="Banana tissue culture plant with roots"
                           style={{
-                            width: '100%', height: 'clamp(240px,40vw,460px)',
+                            width: '100%', height: 'clamp(240px,40vw,660px)',
                             objectFit: 'cover', borderRadius: 'var(--radius-lg)',
                             display: 'block', boxShadow: 'var(--shadow-lg)',
                           }}

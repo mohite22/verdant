@@ -1,4 +1,5 @@
 import { useReveal } from '../hooks/useReveal'
+import { BsCheckSquareFill } from 'react-icons/bs'
 
 const REASONS = [
   'Quality products backed by proven research and development trials',
@@ -10,23 +11,7 @@ const REASONS = [
 
 /* Red checkbox SVG — reusable inline component */
 function CheckIcon() {
-  return (
-    <svg
-      className="check-svg"
-      viewBox="0 0 22 22"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect width="22" height="22" rx="3" fill="var(--clr-red-check)" />
-      <path
-        d="M5 11.5l4 4 8-8"
-        stroke="#fff"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </svg>
-  )
+  return <BsCheckSquareFill size={22} color="var(--clr-red-check)" style={{ flexShrink: 0, marginTop: 1 }} />
 }
 
 export default function WhyChooseUs() {
@@ -37,11 +22,11 @@ export default function WhyChooseUs() {
       <div className="container">
 
         {/* Heading */}
-        <h2 className="reveal" style={{ marginBottom: 'var(--sp-10)' }}>
-          <span className="text-italic-bold" style={{ fontSize: 'var(--fs-xl)' }}>
+        <h2 className="reveal" style={{ marginBottom: 'var(--sp-10)', fontSize: 'var(--fs-xl)'  }}>
+          <span className="text-italic-bold" style={{ }}>
             Why{' '}
           </span>
-          <span className="heading-cursive-red">Choose Us?</span>
+          <span className="page-em">Choose Us?</span>
         </h2>
 
         {/* Checklist */}

@@ -1,34 +1,20 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-import bananaimg1 from '../assets/GrandeNain02.jpg'
+import SEO from './SEO'
+import useReveal from '../hooks/useReveal'
+import bananaimg1 from '../assets/grandnain.jpeg'
 import bananaimg2 from '../assets/yellkibanana.jpg'
 import bananaimg3 from '../assets/banan23.jpeg'
-import bannervideo from '../assets/videos/homehero.mp4' // ✅ ADD YOUR VIDEO
+import bannervideo from '../assets/videos/bananaHero.mp4' // ✅ ADD YOUR VIDEO
+import CTABanner from "../components/CTABanner"; // Corrected path
+import ctabgimag from '../assets/bnv2.jpg'// ✅ CTA bgimage 
 
-/* ─── Shared scroll-reveal hook ─── */
-function useReveal(threshold = 0.1) {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.querySelectorAll('.reveal,.reveal-left,.reveal-right')
-              .forEach((t, i) => setTimeout(() => t.classList.add('visible'), i * 80))
-            obs.unobserve(e.target)
-          }
-        })
-      },
-      { threshold }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-  return ref
-}
+import InVitro from '../assets/VitroBanana.jpg'
+import Invivo from '../assets/vivobanana.jpg'
+import Fieldready from '../assets/Fieldready.jpg'
+import mailicon from '../assets/aboutus-imag.jpg'
+import bananaplantimg from '../assets/banan23.jpeg'
 
 /* ─────────────────────────────────────────────────────
    BANANA VARIETIES DATA
@@ -36,8 +22,8 @@ function useReveal(threshold = 0.1) {
 const VARIETIES = [
   {
     id: 'williams',
-    name: 'Grand Nain Variety:',
-    tag: 'Standard Cavendish',
+    name: 'Grand Nain (G 9):',
+    tag: 'Grand Nain',
     color: '#2b8c3e',
     img: bananaimg1,
     description:
@@ -55,7 +41,7 @@ const VARIETIES = [
   {
     id: 'asdia',
     name: 'Yelakki Banana Variety : ',
-    tag: 'Improved Williams Selection',
+    tag: 'Yelakki',
     color: '#1a6e2e',
     img: bananaimg2,
     description:
@@ -82,25 +68,28 @@ const STAGES = [
     title: 'In Vitro',
     subtitle: 'Laboratory Stage',
     icon: '🧪',
-    desc: 'Tiny plantlets sold in batches of 50 (+ 10% extra). Transported cost-effectively by air freight. Requires the receiver to wean and harden off the plants before field planting.',
+    img: mailicon,
+    desc: 'Tiny plantlets sold in batches of 50 (+ 4% extra). Transported cost-effectively by air freight. Requires the receiver to wean and harden off the plants before field planting.',
     note: 'Suitable for buyers with weaning facilities',
     color: '#2b8c3e',
   },
   {
     num: '02',
     title: 'In Vivo (5 cm)',
-    subtitle: 'Weaning Stage',
+    subtitle: 'PRIMARY HARDENING STAGE',
     icon: '🌱',
-    desc: 'Plants at 5 cm height, fully weaned and hardened off in our automated greenhouse facilities. Ready for transplanting into the nursery or directly into prepared planting sites.',
+    img: Invivo,
+    desc: 'After Laboratory dispatch of ex agar plants,  plants are transplanted into 72 cavity trays in greenhouses for primary hardening for 30 to 45 days. ',
     note: 'Most popular export stage',
     color: '#b8972a',
   },
   {
     num: '03',
     title: 'Field-Ready (20 cm)',
-    subtitle: 'Nursery Stage',
+    subtitle: 'secondary hardening stage',
     icon: '🌿',
-    desc: 'Fully hardened plants at 20 cm, grown through our on-site nursery. These plants are immediately ready for planting in the land — 6 to 8 weeks from the weaning stage.',
+    img: Fieldready,
+    desc: 'Plants grown on in our multi location nurseries for 5–6 weeks until field-ready at 20 to 30 cm. Full traceability maintained.',
     note: 'Ready for direct field planting',
     color: '#c0392b',
   },
@@ -110,20 +99,20 @@ const STAGES = [
    PROCESS STEPS
 ───────────────────────────────────────────────────── */
 const PROCESS = [
-  { step: 1, title: 'Mother Block Selection', desc: 'Plants sourced from our 4-hectare foundation block — evaluated with world-renowned banana specialist Dr. John Robinson for vigorous growth, high commercial yield, plant stability and uniformity.' },
-  { step: 2, title: 'Meristem Extraction', desc: 'Suckers are harvested and tissue extracted by skilled technicians working in ultra-sterile laminar flow benches. Each piece must contain meristematic tissue to generate new shoots.' },
-  { step: 3, title: 'Controlled Multiplication', desc: 'Plant material multiplied over five rounds (four weeks each) in 10 controlled growth rooms — stopping at round five to keep mutation below 1%, ensuring genetic stability.' },
+  { step: 1, title: 'Mother Block Selection', desc: 'Plants sourced from 5 hectare banana seedlings foundation block are evaluated by banana specialist for vigorous growth, freedom from diseases, high commercial yield, plant stability and uniformity' },
+  { step: 2, title: 'Meristem Extraction', desc: 'Suckers are harvested and meristem tissue excised by skilled technicians working inultra-sterile laminar flow benches. Each piece contain meristematic tissue to generate new shoots.' },
+  { step: 3, title: 'Controlled Multiplication', desc: 'Meristem are multiplied over six cycles (four weeks each) in 3 controlled growth rooms to minimise mutation, ensuring genetic stability.' },
   { step: 4, title: 'Virus Indexing', desc: 'Every meristem is virus-indexed by an accredited third-party laboratory for all known banana viruses before multiplication begins — guaranteeing disease-free planting material.' },
-  { step: 5, title: 'Weaning & Hardening', desc: 'Rooting hormone applied, then plants transplanted into trays in fully automated weaning greenhouses. After 4 weeks, plants reach the 5 cm in vivo stage.' },
-  { step: 6, title: 'Nursery Grow-Out', desc: 'Plants grown on in our on-site nurseries for 6–8 weeks until field-ready at 20 cm. Full traceability maintained from foundation block to the grower.' },
+  { step: 5, title: 'Weaning & Hardening', desc: 'Plants after rooting in lab are transplanted into trays in fully automated weaning greenhouses. After 4 weeks, plants reach the 5 cm in vivo stage.' },
+  { step: 6, title: 'Nursery Grow-Out', desc: 'Plants grown on in our on-site nurseries for 6–8 weeks until they achieve at 20 cm height and field ready. Full traceability maintained from foundation block to the grower.' },
 ]
 
 /* ─────────────────────────────────────────────────────
    WHY TC PLANTS
 ───────────────────────────────────────────────────── */
 const BENEFITS = [
-  { icon: '✓', title: 'Disease-Free Guarantee', desc: 'Every plant virus-indexed and certified pathogen-free by accredited third-party laboratories.' },
-  { icon: '✓', title: 'Complete Traceability', desc: 'Full traceability from the foundation block through to the grower — backed by ISO 9001 certification since 2011.' },
+  { icon: '✓', title: 'Disease-Free Guarantee', desc: 'Every plant virus-indexed and certified pathogen-free by DBT accredited third-party laboratories.' },
+  { icon: '✓', title: 'Complete Traceability', desc: 'Fully traceable from foundation black to the Secondary Hardening.' },
   { icon: '✓', title: 'Plantation Uniformity', desc: 'Plants grow at the same pace and are ready to harvest simultaneously — dramatically reducing labour costs.' },
   { icon: '✓', title: 'Faster Maturity', desc: 'Tissue culture plants typically reach first harvest 6–8 weeks earlier than conventional planting material.' },
   { icon: '✓', title: 'Rapid Expansion', desc: 'Convert or expand plantations quickly and efficiently with millions of identical, superior selections.' },
@@ -146,7 +135,7 @@ function PageHero() {
       display: 'flex', alignItems: 'center',
     }}>
       {/* BG Video */}
-      <video autoPlay muted loop playsInline
+      <video autoPlay muted loop playsInline preload="none" aria-hidden="true"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
         <source src={bannervideo} type="video/mp4" />
       </video>
@@ -163,10 +152,10 @@ function PageHero() {
           </p>
           <h1 style={{
             fontFamily: 'var(--font-cursive)', fontSize: 'clamp(36px, 5vw, 64px)',
-            fontWeight: 700, color: '#fff', lineHeight: 1.15, marginBottom: 20,
+            fontWeight: 400, color: '#fff', lineHeight: 1.15, marginBottom: 20,
             textShadow: '0 2px 20px rgba(0,0,0,0.3)',
           }}>
-            Banana Plants
+           Tissue Culture Banana Plants
           </h1>
           <p style={{
             fontSize: 'clamp(14px, 1.6vw, 18px)', fontWeight: 300,
@@ -206,7 +195,7 @@ function TissueIntro() {
             <p className="section-tag">What We Produce</p>
             <h2 className="section-title">
               Tissue Culture<br />
-              <em>Banana Plants</em>
+              <span className="page-em">Banana Plants</span>
             </h2>
             <div className="section-divider-line" />
             <p style={{ fontSize: 15, color: 'var(--clr-text-mid)', lineHeight: 1.85, marginBottom: 20 }}>
@@ -227,6 +216,7 @@ function TissueIntro() {
               // src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1954.jpg"
               src={bananaimg3}
               alt="Banana tissue culture plant with roots"
+              loading="lazy"
               style={{
                 width: '100%', height: 'clamp(240px,40vw,460px)',
                 objectFit: 'cover', borderRadius: 'var(--radius-lg)',
@@ -239,9 +229,10 @@ function TissueIntro() {
               background: '#fff', borderRadius: 'var(--radius-md)',
               padding: '18px 24px', boxShadow: 'var(--shadow-lg)',
               border: '1px solid rgba(43,140,62,0.15)',
-              minWidth: 190,
+              minWidth: 100,
+              maxWidth:'150px'
             }}>
-              <p style={{ fontFamily: 'var(--font-cursive)', fontSize: 36, fontWeight: 700, color: 'var(--clr-green-mid)', lineHeight: 1 }}>10M+</p>
+              <p style={{ fontFamily: 'var(--font-cursive)', fontSize: 36, fontWeight: 400, color: 'var(--clr-green-mid)', lineHeight: 1,  }}>5M+</p>
               <p style={{ fontSize: 12, color: 'var(--clr-text-light)', marginTop: 4, fontWeight: 500, letterSpacing: '0.04em' }}>Plants produced annually</p>
             </div>
           </div>
@@ -265,7 +256,7 @@ function PlantStages() {
         <div style={{ textAlign: 'center', marginBottom: 'var(--sp-16)' }} className="reveal">
           <p className="section-tag">Availability</p>
           <h2 className="section-title">
-            3 Stages of<br /><em>Development</em>
+            3 Stages of<br /> <span className="page-em">Development</span>
           </h2>
           <div className="section-divider-line" style={{ margin: '0 auto var(--sp-4)' }} />
           <p style={{ fontSize: 15, color: 'var(--clr-text-light)', maxWidth: 520, margin: '0 auto' }}>
@@ -291,15 +282,24 @@ function PlantStages() {
               }}
                 className="stage-card"
               >
-                {/* Top colour bar */}
-                <div style={{ height: 5, background: s.color }} />
+                {/* Top image */}
+                <div style={{ height: 300, overflow: 'hidden' }}>
+                  <img src={s.img} alt={s.title}
+                    loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover',
+                      transition: 'transform 0.5s ease' }}
+                    className="stage-img"
+                  />
+                </div>
+                {/* Colour bar */}
+                <div style={{ height: 4, background: s.color }} />
                 <div style={{ padding: 'var(--sp-8) var(--sp-6)', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   {/* Number + icon */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 'var(--sp-5)' }}>
-                    <span style={{ fontFamily: 'var(--font-cursive)', fontSize: 48, fontWeight: 700, color: s.color, lineHeight: 1 }}>{s.num}</span>
+                    <span style={{ fontFamily: 'var(--font-cursive)', fontSize: 48, fontWeight: 400, color: s.color, lineHeight: 1 }}>{s.num}</span>
                     <span style={{ fontSize: 36 }}>{s.icon}</span>
                   </div>
-                  <h3 style={{ fontSize: 22, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 4 }}>{s.title}</h3>
+                  <h3 style={{ fontSize: 22, fontWeight: 400, color: 'var(--clr-green-dark)', marginBottom: 4 }}>{s.title}</h3>
                   <p style={{ fontSize: 12, fontWeight: 600, color: s.color, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 'var(--sp-4)' }}>{s.subtitle}</p>
                   <p style={{ fontSize: 14, color: 'var(--clr-text-mid)', lineHeight: 1.75, flex: 1 }}>{s.desc}</p>
                   {/* Badge */}
@@ -319,6 +319,7 @@ function PlantStages() {
       </div>
       <style>{`
         .stage-card:hover{ box-shadow:var(--shadow-md) !important; transform:translateY(-4px) !important; }
+        .stage-card:hover .stage-img{ transform:scale(1.06) !important; }
         @media(max-width:820px){ .stages-grid{ grid-template-columns:1fr 1fr !important; } }
         @media(max-width:560px){ .stages-grid{ grid-template-columns:1fr !important; } }
       `}</style>
@@ -337,7 +338,7 @@ function VarietiesSection() {
         <div style={{ textAlign: 'center', marginBottom: 'var(--sp-16)' }} className="reveal">
           <p className="section-tag">Our Selection</p>
           <h2 className="section-title">
-            Available <em>Varieties</em>
+            Available  <span className="page-em">Varieties</span>
           </h2>
           <div className="section-divider-line" style={{ margin: '0 auto var(--sp-4)' }} />
           <p style={{ fontSize: 15, color: 'var(--clr-text-light)', maxWidth: 560, margin: '0 auto' }}>
@@ -371,6 +372,7 @@ function VarietiesSection() {
                 <div style={{ position: 'relative', overflow: 'hidden', height: 'clamp(180px,30vw,400px)' }}>
                   <img
                     src={v.img} alt={v.name}
+                    loading="lazy"
                     style={{
                       width: '100%', height: '100%', objectFit: 'cover', display: 'block',
                       transition: 'transform 0.5s ease',
@@ -381,7 +383,7 @@ function VarietiesSection() {
                   <div style={{
                     position: 'absolute', top: 12, left: 12,
                     background: v.color, color: '#fff',
-                    fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+                    fontSize: 10, fontWeight: 400, letterSpacing: '0.1em', textTransform: 'uppercase',
                     padding: '4px 12px', borderRadius: 'var(--radius-pill)',
                   }}>
                     {v.tag}
@@ -391,7 +393,7 @@ function VarietiesSection() {
                 {/* Content */}
                 <div style={{ padding: 'var(--sp-6)', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <h3 style={{
-                    fontFamily: 'var(--font-cursive)', fontSize: 28, fontWeight: 700,
+                    fontFamily: 'var(--font-cursive)', fontSize: 28, fontWeight: 400,
                     color: 'var(--clr-green-dark)', marginBottom: 'var(--sp-3)',
                   }}>
                     {v.name}
@@ -440,12 +442,11 @@ function ProductionProcess() {
         <div style={{ textAlign: 'center', marginBottom: 'var(--sp-16)' }} className="reveal">
           <p className="section-tag" style={{ color: 'rgba(200,168,75,0.8)', justifyContent: 'center', display: 'flex' }}>Our Process</p>
           <h2 className="section-title" style={{ color: '#fff' }}>
-            From Mother Block<br /><em style={{ color: 'var(--clr-green-mid)' }}>to Field-Ready Plant</em>
+            From Mother Block<br /> <span className="page-em">to Field-Ready Plant</span>
           </h2>
           <div className="section-divider-line" style={{ margin: '0 auto var(--sp-4)', background: 'rgba(200,168,75,0.5)' }} />
           <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', maxWidth: 520, margin: '0 auto' }}>
-            A six-step process over five months — producing 2,000 identical plants from a single sucker
-            with less than 1% mutation rate.
+          A six step process over six months- producing 250 to 300 identical plants from a single sucker with less than 1 % mutation rate.
           </p>
         </div>
 
@@ -473,9 +474,9 @@ function ProductionProcess() {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   marginBottom: 'var(--sp-4)',
                 }}>
-                  <span style={{ fontWeight: 700, fontSize: 16, color: '#fff' }}>{String(p.step).padStart(2, '0')}</span>
+                  <span style={{ fontWeight: 400, fontSize: 16, color: '#fff' }}>{String(p.step).padStart(2, '0')}</span>
                 </div>
-                <h4 style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 'var(--sp-3)' }}>{p.title}</h4>
+                <h4 style={{ fontSize: 16, fontWeight: 400, color: '#fff', marginBottom: 'var(--sp-3)' }}>{p.title}</h4>
                 <p style={{ fontSize: 13.5, color: 'rgba(255,255,255,0.60)', lineHeight: 1.75 }}>{p.desc}</p>
               </div>
             </div>
@@ -503,8 +504,9 @@ function WhyTCPlants() {
           <div className="reveal-left">
             <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
               <img
-                src="https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg"
-                alt="Du Roi laboratory banana plants"
+                src={bananaplantimg}
+                alt="Verdant BioAgri tissue culture banana seedlings ready for field planting"
+                loading="lazy"
                 style={{ width: '100%', height: 'clamp(240px,40vw,480px)', objectFit: 'cover', display: 'block' }}
               />
               
@@ -514,8 +516,7 @@ function WhyTCPlants() {
           {/* Benefits list */}
           <div className="reveal-right">
             <p className="section-tag">Why Choose TC Plants</p>
-            <h2 className="section-title">
-              The Du Roi<br /><em>Advantage</em>
+            <h2 className="section-title">Advantage
             </h2>
             <div className="section-divider-line" />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)' }}>
@@ -542,7 +543,7 @@ function WhyTCPlants() {
                     </svg>
                   </div>
                   <div>
-                    <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 2 }}>{b.title}</p>
+                    <p style={{ fontSize: 14, fontWeight: 400, color: 'var(--clr-green-dark)', marginBottom: 2 }}>{b.title}</p>
                     <p style={{ fontSize: 13, color: 'var(--clr-text-light)', lineHeight: 1.6 }}>{b.desc}</p>
                   </div>
                 </div>
@@ -561,65 +562,6 @@ function WhyTCPlants() {
 }
 
 
-/* ── CTA Banner ── */
-function CTABanner() {
-  const ref = useReveal()
-  return (
-    <section style={{ position: 'relative', overflow: 'hidden', padding: 'var(--sp-20) 0' }} ref={ref}>
-      <div style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: "url('https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg')",
-        backgroundSize: 'cover', backgroundPosition: 'center',
-      }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'rgba(15,40,20,0.82)' }} />
-      <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-        <div className="reveal">
-          <h2 style={{
-            fontFamily: 'var(--font-cursive)', fontSize: 'clamp(28px, 4vw, 48px)',
-            fontWeight: 700, color: '#fff', marginBottom: 'var(--sp-4)',
-            textShadow: '0 2px 20px rgba(0,0,0,0.3)',
-          }}>
-            Ready to Order Your Plants?
-          </h2>
-          <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.75)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto var(--sp-8)' }}>
-            Contact our team to discuss your planting programme, order quantities and
-            preferred delivery stage. We supply globally with full phytosanitary documentation.
-          </p>
-          <div style={{ display: 'flex', gap: 'var(--sp-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="#contact" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '14px 36px', background: 'var(--clr-green-mid)', color: '#fff',
-              borderRadius: 'var(--radius-pill)', fontSize: 14, fontWeight: 700,
-              boxShadow: '0 4px 20px rgba(43,140,62,0.4)',
-              transition: 'background var(--tr-base), transform var(--tr-base)',
-            }}
-              className="cta-btn-primary"
-            >
-              Get in Touch
-            </a>
-            <a href="mailto:info@duroilab.co.za" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '14px 36px',
-              background: 'rgba(255,255,255,0.12)', color: '#fff',
-              border: '1.5px solid rgba(255,255,255,0.35)',
-              borderRadius: 'var(--radius-pill)', fontSize: 14, fontWeight: 600,
-              backdropFilter: 'blur(4px)',
-              transition: 'background var(--tr-base)',
-            }}
-              className="cta-btn-ghost"
-            >
-              info@duroilab.co.za
-            </a>
-          </div>
-        </div>
-      </div>
-      <style>{`
-        .cta-btn-primary:hover{ background:var(--clr-green-dark) !important; transform:translateY(-2px) !important; }
-        .cta-btn-ghost:hover{ background:rgba(255,255,255,0.22) !important; }
-      `}</style>
-    </section>
-  )
-}
 
 /* ═════════════════════════════════════════════════════
    SHARED CSS injected once
@@ -627,7 +569,7 @@ function CTABanner() {
 const PAGE_STYLES = `
   .section-tag {
     display: inline-flex; align-items: center; gap: 8px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.22em;
+    font-size: 11px; font-weight: 400; letter-spacing: 0.22em;
     text-transform: uppercase; color: var(--clr-green-mid);
     margin-bottom: 14px;
   }
@@ -638,7 +580,7 @@ const PAGE_STYLES = `
   .section-title {
     font-family: var(--font-cursive);
     font-size: clamp(30px, 3.5vw, 46px);
-    font-weight: 700; color: var(--clr-green-dark);
+    font-weight: 400; color: var(--clr-green-dark);
     line-height: 1.2; margin-bottom: 16px;
   }
   .section-title em { font-style: italic; color: var(--clr-green-mid); }
@@ -655,6 +597,12 @@ export default function BananaPlants() {
   return (
     <>
       <style>{PAGE_STYLES}</style>
+      <SEO
+        title="Tissue Culture Banana Plants"
+        description="Verdant BioAgri LLP supplies premium tissue culture banana plants — Grand Nain (G9) and Yelakki varieties. Disease-free, DBT certified, available in 3 growth stages across India."
+        keywords="tissue culture banana plants India, Grand Nain G9 banana, Yelakki banana, banana tissue culture lab, disease free banana plants, verdant bioagri banana"
+        url="/banana-plants"
+      />
       <Navbar />
       <main style={{ paddingTop: 0 }}>
         <PageHero />
@@ -663,7 +611,7 @@ export default function BananaPlants() {
         <VarietiesSection />
         <ProductionProcess />
         <WhyTCPlants />
-        <CTABanner />
+        <CTABanner bgImage={ctabgimag} />
       </main>
       <Footer />
     </>

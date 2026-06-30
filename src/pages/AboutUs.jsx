@@ -2,8 +2,12 @@ import Navbar    from '../components/Navbar'
 import Footer    from '../components/Footer'
 import PageHero  from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
-import CTABanner from "../components/CTABanner"; // Corrected path
-import mailicon from '../assets/aboutus-imag.jpg'
+import CTABanner from "../components/CTABanner"
+import SEO from '../components/SEO'
+import CTAbgImg from '../assets/labimg1.jpg'
+
+import mailicon from '../assets/lab/DSC02195.jpg'
+import banerimg from '../assets/IMG_2989.jpg'
 const STRENGTHS = [
   { icon: '🔬', title: 'Advanced Laboratory Facilities',
     desc: 'Among the most advanced tissue culture facilities in India. ' },
@@ -25,7 +29,7 @@ function SectionTitle({ tag, title, italic, centre }) {
   return (
     <div style={centre ? { textAlign: 'center', marginBottom: 56 } : { marginBottom: 16 }} className="reveal">
       <p className="page-tag" style={centre ? { justifyContent: 'center' } : {}}>{tag}</p>
-      <h2 className="page-h2">{title} {italic && <em className="page-em">{italic}</em>}</h2>
+      <h2 className="page-h2">{title} {italic && <span className="page-em">{italic}</span>}</h2>
       <div className="page-rule" style={centre ? { margin: '0 auto 28px' } : {}} />
       {centre && null}
     </div>
@@ -40,13 +44,19 @@ export default function AboutUs() {
 
   return (
     <>
+      <SEO
+        title="About Us"
+        description="Verdant BioAgri LLP is a leading tissue culture plant producer in India, part of the Kanoria Group. We supply disease-free Banana, Pomegranate and Sugarcane plants with DBT certification."
+        keywords="verdant bioagri about, tissue culture company India, Kanoria Group agriculture, DBT certified tissue culture lab"
+        url="/about-us"
+      />
       <Navbar />
       <main>
         <PageHero
           title="About Us"
-           breadcrumb="About Us"
+          breadcrumb="About Us"
           subtitle="Growing stronger farms, sustainably. Verdant bioAgri LLP, a proud part of the esteemed Kanoria Group, stands for trust, quality, and continuous innovation in agriculture. "
-          // badge={{ icon: '🏆', text: 'ISO 9001 Certified Since 2011' }}
+          bgImage={banerimg}
         />
 
         {/* ── Who We Are ── */}
@@ -55,7 +65,7 @@ export default function AboutUs() {
             <div className="pg-two-col">
               <div className="reveal-left">
                 <p className="page-tag">Who We Are</p>
-                <h2 className="page-h2">The Leading Banana <em className="page-em">Tissue Culture Lab</em></h2>
+                <h2 className="page-h2">The Leading Banana <span className="page-em">Tissue Culture Lab</span></h2>
                 <div className="page-rule" />
                 <p className="pg-body">
                 Verdant bioAgri LLP, a proud part of the esteemed Kanoria Group, stands for trust, quality, and continuous innovation in agriculture. As a leading producer of premium tissue-cultured Banana, Pomegranate, Teak, and Ornamental plants, we are committed to delivering planting material that supports healthy growth, higher productivity, and long-term sustainability.
@@ -75,7 +85,8 @@ export default function AboutUs() {
               <div className="reveal-right" style={{ position: 'relative' }}>
                 <img
                   src={mailicon}
-                  alt="Du Roi Laboratory"
+                  alt="Verdant BioAgri tissue culture laboratory"
+                  loading="lazy"
                   style={{ width: '100%', height: 'clamp(240px,40vw,480px)', objectFit: 'cover',
                     borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)', display: 'block' }}
                 />
@@ -84,9 +95,10 @@ export default function AboutUs() {
                   background: '#fff', borderRadius: 'var(--radius-md)',
                   padding: '18px 24px', boxShadow: 'var(--shadow-lg)',
                   border: '1px solid rgba(43,140,62,.15)',
+                  maxWidth:'150px'
                 }}>
-                  <p style={{ fontFamily: 'var(--font-cursive)', fontSize: 34, fontWeight: 700,
-                    color: 'var(--clr-green-mid)', lineHeight: 1 }}>10M+</p>
+                  <p style={{ fontFamily: 'var(--font-cursive)', fontSize: 34, fontWeight: 400,
+                    color: 'var(--clr-green-mid)', lineHeight: 1 }}>5M+</p>
                   <p style={{ fontSize: 11, color: 'var(--clr-text-light)', marginTop: 4,
                     fontWeight: 600, letterSpacing: '.04em' }}>Plants produced annually</p>
                 </div>
@@ -210,7 +222,7 @@ export default function AboutUs() {
                             </div>
                           </div>
                         </section>
-                        <CTABanner />
+                        <CTABanner bgImage={CTAbgImg} />
       </main>
       <Footer />
     </>

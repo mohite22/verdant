@@ -23,7 +23,7 @@
 
   /* Typography */
   --font-body:    'Lato', sans-serif;
-  --font-cursive: 'Dancing Script', cursive;
+  --font-cursive: 'Poppins', sans-serif;
   --font-display: 'Arial Black', 'Helvetica Neue', sans-serif;
 
   /* Font sizes */
@@ -153,30 +153,36 @@ button {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
 }
 .reveal.visible {
   opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 .reveal-left {
   opacity: 0;
   transform: translateX(-32px);
   transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
 }
 .reveal-left.visible {
   opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 .reveal-right {
   opacity: 0;
   transform: translateX(32px);
   transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
 }
 .reveal-right.visible {
   opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 /* Stagger helpers  (add alongside .reveal) */
@@ -196,6 +202,8 @@ button {
 
 .section-pad {
   padding-block: var(--section-py);
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
 }
 
 .section-pad-sm {
@@ -250,7 +258,7 @@ button {
 .heading-cursive-lg {
   font-family: var(--font-cursive);
   font-size: var(--fs-3xl);
-  font-weight: 700;
+  font-weight: 400;
   color: var(--clr-text);
   line-height: 1.1;
 }
@@ -258,21 +266,21 @@ button {
 .heading-cursive-md {
   font-family: var(--font-cursive);
   font-size: var(--fs-2xl);
-  font-weight: 700;
+  font-weight: 400;
   color: var(--clr-text);
 }
 
 .heading-cursive-red {
   font-family: var(--font-cursive);
   font-size: var(--fs-2xl);
-  font-weight: 700;
+  font-weight: 400;
   color: var(--clr-red-check);
 }
 
 .heading-cursive-white {
   font-family: var(--font-cursive);
   font-size: clamp(26px, 4.5vw, var(--fs-3xl));
-  font-weight: 700;
+  font-weight: 400;
   color: var(--clr-white);
   text-shadow: 0 2px 20px rgba(0,0,0,0.3);
   line-height: 1.2;
@@ -524,12 +532,14 @@ button {
 }
 
 .footer-tagline {
-  font-family: var(--font-cursive);
-  font-size: 26px;
-  font-weight: 700;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 30px;
+  font-weight: 600;
+  font-style: italic;
   color: var(--clr-white);
-  line-height: 1.35;
+  line-height: 1.4;
   max-width: 280px;
+  letter-spacing: 0.01em;
 }
 
 .footer-contact-col {
@@ -638,6 +648,12 @@ button {
 .drop-link:hover {
   background: var(--clr-green-light);
   color: var(--clr-green-mid);
+}
+
+.drop-link-active {
+  background: var(--clr-green-light);
+  color: var(--clr-green-mid);
+  font-weight: 700;
 }
 
 /* ─── 19. RESPONSIVE BREAKPOINTS ───────────────────── */
@@ -806,13 +822,12 @@ button {
 .page-h2 {
   font-family: var(--font-cursive);
   font-size: clamp(28px, 3.5vw, 44px);
-  font-weight: 700;
+  font-weight: 400;
   color: var(--clr-green-dark);
   line-height: 1.2;
   margin-bottom: 16px;
 }
 .page-em {
-  font-style: italic;
   color: var(--clr-green-mid);
 }
 
@@ -822,7 +837,7 @@ button {
   height: 3px;
   background: var(--clr-red-check);
   border-radius: 2px;
-  margin-bottom: 28px;
+  margin: 0px auto 20px !important;
 }
 
 /* ── Body paragraph ── */

@@ -4,16 +4,12 @@ import PageHero from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
 import pomeimg1 from '../assets/pomePM-400x700.jpeg'
 import CTABanner from '../components/CTABanner'
+import CTAbgimg from '../assets/pomocta.jpg'
+import wwpimage from '../assets/pomegranate/pomegranate.jpg'
 import pomovideo from '../assets/videos/pomovideo.mp4'
+import SEO from '../components/SEO'
 
-const FACTS = [
-  { label: 'Plant Type',       value: 'Tissue Culture' },
-  { label: 'Varieties',        value: 'Wonderful, Acco, Herskawitz' },
-  { label: 'Fruit Colour',     value: 'Deep Red / Ruby' },
-  { label: 'Shelf Life',       value: 'Up to 6 Months' },
-  { label: 'Certification',    value: 'ISO 9001 Certified' },
-  { label: 'Supply Regions',   value: 'Africa, Middle East & Export' },
-]
+
 
 const VARIETIES = [
   {
@@ -57,7 +53,7 @@ const BENEFITS = [
   {
     icon: '🛡️',
     title: 'Disease-Free Guarantee',
-    desc: 'All plants are virus-indexed and certified pathogen-free by accredited third-party laboratories before leaving our facility — protecting your investment from day one.',
+    desc: 'All plants are virus-indexed and certified pathogen-free by DBT accredited third-party laboratories before leaving our facility — protecting your investment from day one.',
   },
   {
     icon: '📈',
@@ -66,18 +62,18 @@ const BENEFITS = [
   },
   {
     icon: '🌍',
-    title: 'Global Supply',
-    desc: 'We supply pomegranate plants globally with full phytosanitary documentation, CITES compliance and export-ready packaging — ensuring safe, on-time delivery to your farm.',
+    title: 'Seedlings Supply',
+    desc: 'We supply tissue cultured pomegranates plantlets in Karnataka, Maharashtra, Gujarat, Rajasthan, Andhra Pradesh and we are ready to export plants globally.',
   },
 ]
 
 const PROCESS = [
   { step: 1, title: 'Elite Mother Block', desc: 'Plants selected from our certified foundation block — evaluated for fruit quality, yield consistency, disease resistance and commercial viability.' },
-  { step: 2, title: 'Meristem Extraction', desc: 'Shoot tips harvested and surface-sterilised before transfer to sterile culture media under laminar flow conditions in our ISO-certified laboratory.' },
+  { step: 2, title: 'Meristem Extraction', desc: 'Shoot tips harvested and surface-sterilised before transfer to sterile culture media under laminar flow conditions in our ISO-certified State of the Art laboratory.' },
   { step: 3, title: 'In Vitro Multiplication', desc: 'Cultures multiplied through multiple sub-culture cycles under controlled temperature, light and humidity — maintaining genetic fidelity throughout.' },
-  { step: 4, title: 'Rooting & Weaning', desc: 'Plantlets transferred to rooting media, then gradually acclimatised to ambient conditions in our automated weaning greenhouses over 4–6 weeks.' },
-  { step: 5, title: 'Nursery Grow-Out', desc: 'Rooted plants grown on in our on-site nurseries until field-ready. Full traceability records maintained from mother block to dispatch.' },
-  { step: 6, title: 'Quality & Dispatch', desc: 'Final inspection, grading and phytosanitary certification before packing and dispatch — ensuring every plant meets our strict quality standards.' },
+  { step: 4, title: 'Rooting & Weaning', desc: 'Rooted plants grown in our on-site nurseries until field-ready. Full traceability records maintained from mother block to dispatch.' },
+  { step: 5, title: 'Nursery Grow-Out', desc: 'Rooted plants grown in our on-site nurseries until field-ready. Full traceability records maintained from mother block to dispatch.' },
+  { step: 6, title: 'Quality & Dispatch', desc: 'Final inspection, grading and quality check before packing and dispatch — ensuring every plant meets our strict quality standards..' },
 ]
 
 export default function PomegranatePlants() {
@@ -119,7 +115,7 @@ const Card = ({ v }) => (
             background: `${v.color}18`,
             color: v.color,
             fontSize: 10,
-            fontWeight: 700,
+            fontWeight: 400,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
             padding: '4px 12px',
@@ -134,8 +130,8 @@ const Card = ({ v }) => (
         <h3
           style={{
             fontFamily: 'var(--font-cursive)',
-            fontSize: 28,
-            fontWeight: 700,
+            fontSize: 20,
+            fontWeight: 400,
             color: 'var(--clr-green-dark)',
             marginBottom: 'var(--sp-3)',
           }}
@@ -159,6 +155,12 @@ const Card = ({ v }) => (
 
   return (
     <>
+      <SEO
+        title="Tissue Culture Pomegranate Plants"
+        description="Verdant BioAgri LLP supplies premium tissue culture pomegranate plants — Bhagva and Super Bhagva varieties. Disease-free, ISO certified, available across India and for export."
+        keywords="tissue culture pomegranate plants India, Bhagva pomegranate, Super Bhagva, pomegranate seedlings Karnataka Maharashtra, pomegranate tissue culture"
+        url="/pomegranate-plants"
+      />
       <Navbar />
       <main>
         <PageHero
@@ -174,7 +176,7 @@ const Card = ({ v }) => (
             <div className="pg-two-col">
               <div className="reveal-left">
                 <p className="page-tag">What We Produce</p>
-                <h2 className="page-h2">Tissue Culture <em className="page-em">Pomegranate Plants</em></h2>
+                <h2 className="page-h2">Tissue Culture <span className="page-em">Pomegranate Plants</span></h2>
                 <div className="page-rule" />
                 <p className="pg-body">
                 Renowned for their remarkable productivity, impressive fruit size, and irresistible market appeal, these varieties redefine success in orchards. The distinctive deep saffron hue of their large fruits, coupled with captivating deep red arils, not only captivates but also meets the discerning demand of global markets, positioning them as ideal choices for export.
@@ -189,45 +191,28 @@ const Card = ({ v }) => (
 
               <div className="reveal-right" style={{ position: 'relative' }}>
                 <img
-                  src={pomeimg1}
+                  src={wwpimage}
                   alt="Pomegranate fruit on tree"
+                  loading="lazy"
                   style={{
-                    width: '100%', height: 'clamp(240px,40vw,460px)', objectFit: 'cover',
+                    width: '100%', height: 'clamp(240px,40vw,560px)', objectFit: 'cover',
                     borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', display: 'block',
                   }}
                 />
-                <div style={{
+                {/* <div style={{
                   position: 'absolute', top: 24, right: -12,
                   background: 'var(--clr-red-check)', color: '#fff',
                   borderRadius: 'var(--radius-md)', padding: '14px 20px',
                   boxShadow: 'var(--shadow-md)', textAlign: 'center', maxWidth: 160,
                 }}>
-                  <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.10em', textTransform: 'uppercase', opacity: .85, marginBottom: 4 }}>Certified</p>
-                  <p style={{ fontFamily: 'var(--font-cursive)', fontSize: 17, fontWeight: 700, lineHeight: 1.2 }}>ISO 9001 Production</p>
-                </div>
+                  <p style={{ fontSize: 10, fontWeight: 400, letterSpacing: '.10em', textTransform: 'uppercase', opacity: .85, marginBottom: 4 }}>Certified</p>
+                  <p style={{ fontFamily: 'var(--font-cursive)', fontSize: 17, fontWeight: 400, lineHeight: 1.2 }}>ISO 9001 Production</p>
+                </div> */}
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── Quick Facts Strip ── */}
-        <section style={{ background: 'var(--clr-green-dark)', padding: '64px 0' }} ref={r2}>
-          <div className="container">
-            <div className="pg-grid-3" style={{ gap: 20 }}>
-              {FACTS.map((f, i) => (
-                <div key={i} className={`reveal delay-${i + 1}`}>
-                  <div style={{
-                    padding: '24px 32px', background: 'rgba(255,255,255,.07)',
-                    borderRadius: 'var(--radius-md)', border: '1px solid rgba(255,255,255,.10)',
-                  }}>
-                    <p style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,.42)', letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: 8 }}>{f.label}</p>
-                    <p style={{ fontFamily: 'var(--font-cursive)', fontSize: 20, fontWeight: 700, color: '#fff' }}>{f.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ── Varieties ── */}
         <section className="section-pad" style={{ background: 'var(--clr-offwhite)' }} ref={r3}>
@@ -236,7 +221,7 @@ const Card = ({ v }) => (
     <div style={{ textAlign: 'center', marginBottom: 56 }} className="reveal">
       <p className="page-tag" style={{ justifyContent: 'center' }}>Our Selection</p>
       <h2 className="page-h2">
-        Available <em className="page-em">Varieties</em>
+        Available <span className="page-em">Varieties</span>
       </h2>
       <div className="page-rule" style={{ margin: '0 auto' }} />
       <p
@@ -295,7 +280,7 @@ const Card = ({ v }) => (
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: 56 }} className="reveal">
               <p className="page-tag" style={{ justifyContent: 'center' }}>Why Choose TC Plants</p>
-              <h2 className="page-h2">The Du Roi <em className="page-em">Advantage</em></h2>
+              <h2 className="page-h2">Verdant Seedlings <span className="page-em">Advantage</span></h2>
               <div className="page-rule" style={{ margin: '0 auto' }} />
             </div>
             <div className="pg-grid-2">
@@ -310,7 +295,7 @@ const Card = ({ v }) => (
                   >
                     <div style={{ fontSize: 32, flexShrink: 0 }}>{b.icon}</div>
                     <div>
-                      <h4 style={{ fontSize: 17, fontWeight: 700, color: 'var(--clr-green-dark)', marginBottom: 8 }}>{b.title}</h4>
+                      <h4 style={{ fontSize: 17, fontWeight: 400, color: 'var(--clr-green-dark)', marginBottom: 8 }}>{b.title}</h4>
                       <p style={{ fontSize: 14, color: 'var(--clr-text-mid)', lineHeight: 1.78 }}>{b.desc}</p>
                     </div>
                   </div>
@@ -330,8 +315,8 @@ const Card = ({ v }) => (
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ textAlign: 'center', marginBottom: 56 }} className="reveal">
               <p className="page-tag" style={{ color: 'rgba(200,168,75,0.8)', justifyContent: 'center', display: 'flex' }}>Our Process</p>
-              <h2 className="page-h2" style={{ color: '#fff' }}>From Mother Block <em style={{ color: 'var(--clr-green-mid)' }}>to Field-Ready Plant</em></h2>
-              <div className="page-rule" style={{ margin: '0 auto', background: 'rgba(200,168,75,0.5)' }} />
+              <h2 className="page-h2" style={{ color: '#fff' }}>From Mother Block <span style={{ color: 'var(--clr-green-mid)' }}>to Field-Ready Plant</span></h2>
+              <div className="page-rule" style={{ margin: '0 auto 20px', background: 'rgba(200,168,75,0.5)' }} />
               <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', maxWidth: 520, margin: '0 auto' }}>
                 A six-step process ensuring every plant that leaves our facility is healthy,
                 vigorous and ready to perform in the field.
@@ -355,9 +340,9 @@ const Card = ({ v }) => (
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       marginBottom: 'var(--sp-4)',
                     }}>
-                      <span style={{ fontWeight: 700, fontSize: 16, color: '#fff' }}>{String(p.step).padStart(2, '0')}</span>
+                      <span style={{ fontWeight: 400, fontSize: 16, color: '#fff' }}>{String(p.step).padStart(2, '0')}</span>
                     </div>
-                    <h4 style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 'var(--sp-3)' }}>{p.title}</h4>
+                    <h4 style={{ fontSize: 16, fontWeight: 400, color: '#fff', marginBottom: 'var(--sp-3)' }}>{p.title}</h4>
                     <p style={{ fontSize: 13.5, color: 'rgba(255,255,255,0.60)', lineHeight: 1.75 }}>{p.desc}</p>
                   </div>
                 </div>
@@ -367,7 +352,7 @@ const Card = ({ v }) => (
         </section>
 
         {/* ── CTA Banner ── */}
-         <CTABanner />
+         <CTABanner bgImage={CTAbgimg} />
       </main>
       <Footer />
       <style>{`

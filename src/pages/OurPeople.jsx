@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import PageHero from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
+import SEO from '../components/SEO'
 
 const TEAM = [
   {
@@ -48,6 +49,12 @@ export default function OurPeople() {
 
   return (
     <>
+      <SEO
+        title="Our People"
+        description="Meet the dedicated team at Verdant BioAgri LLP behind every disease-free, high-quality tissue culture plant. Expert technicians, agronomists and quality managers."
+        keywords="verdant bioagri team, tissue culture experts India, plant scientists, agriculture team"
+        url="/our-people"
+      />
       <Navbar />
       <main>
         <PageHero
@@ -87,6 +94,7 @@ export default function OurPeople() {
                     <div style={{ height: 4, background: p.color }} />
                     <div style={{ height: 220, overflow: 'hidden' }}>
                       <img src={p.img} alt={p.name}
+                        loading="lazy"
                         style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} />
                     </div>
                     <div style={{ padding: 'var(--sp-6)' }}>

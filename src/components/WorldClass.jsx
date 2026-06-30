@@ -1,5 +1,7 @@
 import { useReveal } from '../hooks/useReveal'
 
+import bananaimg1 from '../assets/bnv3.jpg'
+
 export default function WorldClass() {
   const ref = useReveal({ threshold: 0.15 })
 
@@ -21,8 +23,7 @@ export default function WorldClass() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage:
-            "url('https://duroilab.co.za/wp-content/uploads/2024/04/IMG_1699.jpg')",
+          backgroundImage: `url('${bananaimg1}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           zIndex: 0,

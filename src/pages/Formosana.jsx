@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import PageHero from '../components/PageHero'
 import usePageReveal from '../hooks/usePageReveal'
+import SEO from '../components/SEO'
 
 const FACTS = [
   { label: 'Variety Type',        value: 'Cavendish' },
@@ -30,6 +31,12 @@ export default function Formosana() {
 
   return (
     <>
+      <SEO
+        title="Formosana — TR4-Tolerant Cavendish Banana"
+        description="Formosana is a Cavendish banana variety with high tolerance to Fusarium Tropical Race 4 (Foc TR4), exclusively supplied by Du Roi Laboratory into Africa, Middle East and the Americas."
+        keywords="Formosana banana, TR4 tolerant banana, Fusarium TR4 banana variety, TBRI banana, Cavendish TR4 resistance"
+        url="/formosana"
+      />
       <Navbar />
       <main>
         <PageHero
@@ -68,6 +75,7 @@ export default function Formosana() {
               <div className="reveal-right" style={{ position: 'relative' }}>
                 <img src="https://duroilab.co.za/wp-content/uploads/2024/04/2019-05-28-16.36.24_2.jpg"
                   alt="Formosana banana plants"
+                  loading="lazy"
                   style={{ width: '100%', height: 460, objectFit: 'cover',
                     borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', display: 'block' }} />
                 <div style={{ position: 'absolute', top: 24, right: -12,
